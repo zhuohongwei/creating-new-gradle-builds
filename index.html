@@ -5,7 +5,7 @@
   <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--> 
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
   <meta name="generator" content="Asciidoctor 1.5.3"> 
-  <title>Creating New Gradle Builds</title> 
+  <title>Getting Started Creating New Gradle Builds</title> 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css"> 
   <link rel="stylesheet" href="./coderay-asciidoctor.css"> 
   <link rel="stylesheet" href="https://guides.gradle.org/asciidoctor.css"> 
@@ -34,7 +34,7 @@
    <div style="padding-top: 10px;">
     <a href="https://guides.gradle.org"><img src="http://guides.gradle.org/gradle-guides.svg" alt=""></a>
    </div> 
-   <h1>Creating New Gradle Builds <span class="image"><a class="image" href="https://travis-ci.org/gradle-guides/creating-new-gradle-builds"><img src="https://travis-ci.org/gradle-guides/creating-new-gradle-builds.svg?branch=master" alt="Build Status"></a></span></h1> 
+   <h1>Getting Started Creating New Gradle Builds <span class="image"><a class="image" href="https://travis-ci.org/gradle-guides/creating-new-gradle-builds"><img src="https://travis-ci.org/gradle-guides/creating-new-gradle-builds.svg?branch=master" alt="Build Status"></a></span></h1> 
    <div id="toc" class="toc2"> 
     <div id="toctitle">
      Table of Contents
@@ -42,48 +42,113 @@
     <ul class="sectlevel1"> 
      <li><a href="#what_you_ll_build">What you’ll build</a></li> 
      <li><a href="#what_you_ll_need">What you’ll need</a></li> 
-     <li><a href="#step_1">Step 1</a></li> 
-     <li><a href="#step_2">Step 2</a></li> 
-     <li><a href="#step_n">Step N</a></li> 
-     <li><a href="#summary">Summary</a></li> 
+     <li><a href="#create_a_project">Create a project</a></li> 
+     <li><a href="#learn_the_key_concepts">Learn the key concepts</a></li> 
+     <li><a href="#next_steps">Next steps</a></li> 
     </ul> 
    </div> 
   </div> 
   <div id="content"> 
+   <div id="preamble"> 
+    <div class="sectionbody"> 
+     <div class="paragraph"> 
+      <p>Creating a new build using Gradle means that you become a <em>build author</em>. You still need to follow the same <a href="https://gradle.org/getting-started/using-a-build/">path as a build user</a>, but in addition, you will want to understand the Gradle Build Language and its API.</p> 
+     </div> 
+     <div class="paragraph"> 
+      <p>A build user needs to be able to identify the project type and how such a project is structured. In your case, you know in advance what project type you want but you still need to understand the conventions and project structure. In addition, you also have to understand the basic declarative elements and underlying model of the project type you want to build.</p> 
+     </div> 
+    </div> 
+   </div> 
    <div class="sect1"> 
     <h2 id="what_you_ll_build"><a class="anchor" href="#what_you_ll_build"></a>What you’ll build</h2> 
     <div class="sectionbody"> 
+     <div class="paragraph"> 
+      <p>You will create a basic build script with skeleton code for building a Java application.</p> 
+     </div> 
     </div> 
    </div> 
    <div class="sect1"> 
     <h2 id="what_you_ll_need"><a class="anchor" href="#what_you_ll_need"></a>What you’ll need</h2> 
     <div class="sectionbody"> 
+     <div class="ulist"> 
+      <ul> 
+       <li> <p>About 20 minutes</p> </li> 
+       <li> <p>A text editor or IDE</p> </li> 
+       <li> <p>A Java Development Kit (JDK), version 1.7 or better</p> </li> 
+       <li> <p>A <a href="https://docs.gradle.org/3.3/userguide//installation.html#sec:download">Gradle distribution</a>, version 3.3 or better</p> </li> 
+      </ul> 
+     </div> 
     </div> 
    </div> 
    <div class="sect1"> 
-    <h2 id="step_1"><a class="anchor" href="#step_1"></a>Step 1</h2> 
+    <h2 id="create_a_project"><a class="anchor" href="#create_a_project"></a>Create a project</h2> 
     <div class="sectionbody"> 
+     <div class="paragraph"> 
+      <p>One way to get your project started is via the <code>init</code> command, which is documented under the <a href="https://docs.gradle.org/3.3/userguide//build_init_plugin.html">Build Init plugin</a> chapter of the user guide. It will create a skeleton project with a Gradle build file based on the project type that you specify. For example, you can run the following to create a basic Java project:</p> 
+     </div> 
+     <div class="listingblock"> 
+      <div class="content"> 
+       <pre>$ gradle init --type=java-library <i class="conum" data-value="1"></i><b>(1)</b></pre> 
+      </div> 
+     </div> 
+     <div class="colist arabic"> 
+      <table> 
+       <tbody>
+        <tr> 
+         <td><i class="conum" data-value="1"></i><b>1</b></td> 
+         <td>Check out the documentation to find out what <a href="https://docs.gradle.org/3.3/userguide//build_init_plugin.html#sec:build_init_types">project types</a> are currently supported.</td> 
+        </tr> 
+       </tbody>
+      </table> 
+     </div> 
+     <div class="paragraph"> 
+      <p>To learn more about bootstrapping a Gradle build, particularly if you want or need to do it by hand, follow the quick start guide for the type of project you want:</p> 
+     </div> 
+     <div class="ulist"> 
+      <ul> 
+       <li> <p><strong>java</strong>, <strong>groovy</strong>, <strong>scala</strong>: you have <a href="https://docs.gradle.org/3.3/userguide//tutorial_java_projects.html">a JVM project</a>. The user guide also has more details about each of the language plugins if you want a bit more depth.</p> </li> 
+       <li> <p><strong>c</strong>, <strong>cpp</strong>, <strong>assembler</strong>, <strong>objective-c</strong>, <strong>objective-cpp</strong>: you have <a href="https://docs.gradle.org/3.3/userguide//native_software.html">a native build</a>.</p> </li> 
+       <li> <p><strong>android</strong>: you have <a href="http://tools.android.com/tech-docs/new-build-system/user-guide">an Android project</a>()</p> </li> 
+      </ul> 
+     </div> 
+     <div class="paragraph"> 
+      <p>It’s not uncommon in multi-project builds to have subprojects of different types, particularly when you have a polyglot project or a separate project for documentation for example, so you may want to check out more than one of the quick start guides. You’ll learn more about multi-project builds in step 3.</p> 
+     </div> 
     </div> 
    </div> 
    <div class="sect1"> 
-    <h2 id="step_2"><a class="anchor" href="#step_2"></a>Step 2</h2> 
+    <h2 id="learn_the_key_concepts"><a class="anchor" href="#learn_the_key_concepts"></a>Learn the key concepts</h2> 
     <div class="sectionbody"> 
+     <div class="paragraph"> 
+      <p>Gradle is a very powerful tool, which means you need a good understanding of the underlying model to create maintainable builds. Fortunately, there are just&nbsp;a few core concepts to get your head round:</p> 
+     </div> 
+     <div class="ulist"> 
+      <ul> 
+       <li> <p>Gradle’s build phases—read the first section of the <a href="https://docs.gradle.org/3.3/userguide//build_lifecycle.html">build lifecycle chapter</a> for a description of these.</p> </li> 
+       <li> <p>The project API and <a href="https://docs.gradle.org/3.3/userguide//writing_build_scripts.html">properties</a></p> </li> 
+       <li> <p><a href="https://docs.gradle.org/3.3/userguide//more_about_tasks.html">Tasks</a></p> </li> 
+       <li> <p><a href="https://docs.gradle.org/3.3/userguide//working_with_files.html">File handling</a></p> </li> 
+       <li> <p><a href="https://docs.gradle.org/3.3/userguide//artifact_dependencies_tutorial.html">Dependency management</a></p> </li> 
+      </ul> 
+     </div> 
     </div> 
    </div> 
    <div class="sect1"> 
-    <h2 id="step_n"><a class="anchor" href="#step_n"></a>Step N</h2> 
+    <h2 id="next_steps"><a class="anchor" href="#next_steps"></a>Next steps</h2> 
     <div class="sectionbody"> 
-    </div> 
-   </div> 
-   <div class="sect1"> 
-    <h2 id="summary"><a class="anchor" href="#summary"></a>Summary</h2> 
-    <div class="sectionbody"> 
+     <div class="ulist"> 
+      <ul> 
+       <li> <p><strong>Building a Java application</strong>: Follow <a href="https://guides.gradle.org/building-java-applications">Getting Started Building Java Applications</a> guide.</p> </li> 
+       <li> <p><strong>Learn about multi-project builds</strong>: If you don’t see a need right now to create a multi-project build, then you can safely skip this step—it’s easy to make the switch later on if necessary. But if you do want to split a project into multiple, dependent and independent modules, you will need to learn how to configure them and manage the inter-module relationships. That requires a much more in-depth understanding of the topic than was covered in the build user path. We recommend you read the entirety of the <a href="https://docs.gradle.org/3.3/userguide//multi_project_builds.html">multi-project builds chapter</a> of the user guide.</p> </li> 
+       <li> <p><strong>Learn Groovy</strong>: You can make a fair bit of progress with Gradle without learning the language that build scripts are written in, but ultimately you’ll limit yourself if you don’t learn the basics of Groovy. Head to the <a href="http://groovy-lang.org/learn.html">Groovy website</a> to find out what learning resources are available or simply check out the <a href="https://classroom.udacity.com/courses/ud867/lessons/3968239469/concepts/42963752880923">Groovy fundamentals</a> and <a href="https://classroom.udacity.com/courses/ud867/lessons/3968239469/concepts/42963752890923">Groovy closures</a> sections of the free Udacity course.</p> </li> 
+      </ul> 
+     </div> 
     </div> 
    </div> 
   </div> 
   <div id="footer"> 
    <div id="footer-text">
-     Last updated 2017-02-13 21:51:56 UTC 
+     Last updated 2017-02-15 22:04:59 UTC 
    </div> 
   </div>  
  </body>
