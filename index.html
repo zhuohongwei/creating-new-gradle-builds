@@ -1,129 +1,135 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
- <head> 
-  <meta charset="utf-8"> 
-  <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--> 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-  <meta name="generator" content="Asciidoctor 1.5.3"> 
-  <title>Creating New Gradle Builds</title> 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css"> 
-  <link rel="stylesheet" href="./coderay-asciidoctor.css"> 
-  <link rel="stylesheet" href="https://guides.gradle.org/asciidoctor.css"> 
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700|Source+Code+Pro:500"> 
-  <link rel="apple-touch-icon" sizes="180x180" href="https://guides.gradle.org/icon/apple-touch-icon.png"> 
-  <link rel="icon" type="image/png" href="https://guides.gradle.org/icon/favicon-32x32.png" sizes="32x32"> 
-  <link rel="icon" type="image/png" href="https://guides.gradle.org/icon/favicon-16x16.png" sizes="16x16"> 
-  <link rel="manifest" href="https://guides.gradle.org/icon/manifest.json"> 
-  <link rel="mask-icon" href="https://guides.gradle.org/icon/safari-pinned-tab.svg" color="#5bbad5"> 
-  <link rel="shortcut icon" href="https://guides.gradle.org/icon/favicon.ico"> 
-  <meta name="apple-mobile-web-app-title" content="Creating New Gradle Builds"> 
-  <meta name="application-name" content="Creating New Gradle Builds"> 
-  <meta name="msapplication-config" content="https://guides.gradle.org/icon/browserconfig.xml"> 
-  <meta name="theme-color" content="#ffffff"> 
-  <script defer src="https://guides.gradle.org/js/set-time-to-complete-text.js"></script> 
-  <script>
+<head>
+<meta charset="utf-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.3">
+<meta name="author" content="Ken Kousen">
+<title>Creating New Gradle Builds</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./coderay-asciidoctor.css">
+<link rel="stylesheet" href="https://guides.gradle.org/asciidoctor.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700|Source+Code+Pro:500">
+<link rel="apple-touch-icon" sizes="180x180" href="https://guides.gradle.org/icon/apple-touch-icon.png">
+<link rel="icon" type="image/png" href="https://guides.gradle.org/icon/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="https://guides.gradle.org/icon/favicon-16x16.png" sizes="16x16">
+<link rel="manifest" href="https://guides.gradle.org/icon/manifest.json">
+<link rel="mask-icon" href="https://guides.gradle.org/icon/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="https://guides.gradle.org/icon/favicon.ico">
+<meta name="apple-mobile-web-app-title" content="Creating New Gradle Builds">
+<meta name="application-name" content="Creating New Gradle Builds">
+<meta name="msapplication-config" content="https://guides.gradle.org/icon/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+<script defer src="https://guides.gradle.org/js/set-time-to-complete-text.js"></script>
+<script>
   (function(i,s,o,g,r,a,m){i["GoogleAnalyticsObject"]=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,"script","https://www.google-analytics.com/analytics.js","ga");
   ga("create", "UA-4207603-1", "auto");
   ga("send", "pageview");
-</script> 
- </head> 
- <body class="article toc2 toc-right"> 
-  <div id="header">
-   <div style="padding-top: 10px;">
-    <a href="https://guides.gradle.org"><img src="http://guides.gradle.org/gradle-guides.svg" alt=""></a>
-   </div> 
-   <h1>Creating New Gradle Builds</h1> 
-   <div id="toc" class="toc2"> 
-    <div id="toctitle">
-     Table of Contents
-    </div> 
-    <ul class="sectlevel1"> 
-     <li><a href="#what_you_ll_need">What you’ll need</a></li> 
-     <li><a href="#create_a_project">Create a project</a></li> 
-     <li><a href="#run_the_code_tasks_code_command">Run the <code>tasks</code> command</a></li> 
-     <li><a href="#generate_a_gradle_wrapper">Generate a Gradle wrapper</a></li> 
-     <li><a href="#run_the_code_properties_code_task">Run the <code>properties</code> task</a></li> 
-     <li><a href="#configure_a_gradle_core_task">Configure a Gradle core task</a></li> 
-     <li><a href="#configure_a_core_task_and_use_a_plugin">Configure a core task and use a plugin</a></li> 
-     <li><a href="#add_a_hello_world_task">Add a "Hello, World!" task</a></li> 
-     <li><a href="#next_steps">Next Steps</a></li> 
-    </ul> 
-   </div> 
-  </div> 
-  <div id="content"> 
-   <div id="preamble"> 
-    <div class="sectionbody"> 
-     <div class="paragraph"> 
-      <p>When encountering a project that uses Gradle for the first time, many developers don’t know what Gradle can do for them. The purpose of this guide is to show some of the basic tasks that work in any Gradle build, regardless of type of project. In this guide, you’ll create a trivial Gradle project, invoke some of the basic Gradle commands, and get a sense of how Gradle manages the project.</p> 
-     </div> 
-    </div> 
-   </div> 
-   <div class="sect1"> 
-    <h2 id="what_you_ll_need"><a class="anchor" href="#what_you_ll_need"></a>What you’ll need</h2> 
-    <div class="sectionbody"> 
-     <div class="ulist"> 
-      <ul> 
-       <li> <p>About <span class="time-to-complete-text"></span></p> </li> 
-       <li> <p>A text editor or IDE</p> </li> 
-       <li> <p>A Java Development Kit (JDK), version 1.7 or better (only necessary to run Gradle)</p> </li> 
-       <li> <p>A <a href="https://gradle.org/install">Gradle distribution</a>, version 3.5 or better</p> </li> 
-      </ul> 
-     </div> 
-    </div> 
-   </div> 
-   <div class="sect1"> 
-    <h2 id="create_a_project"><a class="anchor" href="#create_a_project"></a>Create a project</h2> 
-    <div class="sectionbody"> 
-     <div class="paragraph"> 
-      <p>You can start a new project simply by creating a <code>build.gradle</code> file and adding build logic to it. To keep this example as simple as possible, create a new directory and add an empty file called <code>build.gradle</code> to it.</p> 
-     </div> 
-     <div class="admonitionblock note"> 
-      <table> 
-       <tbody>
-        <tr> 
-         <td class="icon"> <i class="fa icon-note" title="Note"></i> </td> 
-         <td class="content"> Shell commands will shown for Unix-based systems. Windows has analogous commands for each. </td> 
-        </tr> 
-       </tbody>
-      </table> 
-     </div> 
-     <div class="listingblock"> 
-      <div class="content"> 
-       <pre>$ mkdir basic-demo
+</script>
+</head>
+<body class="article toc2 toc-right">
+<div id="header"><div style="padding-top: 10px;"><a href="https://guides.gradle.org"><img src="http://guides.gradle.org/gradle-guides.svg" alt=""></a></div><h1>Creating New Gradle Builds</h1>
+<div class="details">
+<span id="author" class="author">Ken Kousen</span><br>
+</div>
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#what_you_ll_need">What you&#8217;ll need</a></li>
+<li><a href="#create_a_project">Create a project</a></li>
+<li><a href="#run_the_code_tasks_code_command">Run the <code>tasks</code> command</a></li>
+<li><a href="#generate_a_gradle_wrapper">Generate a Gradle wrapper</a></li>
+<li><a href="#run_the_code_properties_code_task">Run the <code>properties</code> task</a></li>
+<li><a href="#configure_a_gradle_core_task">Configure a Gradle core task</a></li>
+<li><a href="#configure_a_core_task_and_use_a_plugin">Configure a core task and use a plugin</a></li>
+<li><a href="#add_a_hello_world_task">Add a "Hello, World!" task</a></li>
+<li><a href="#next_steps">Next Steps</a></li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>When encountering a project that uses Gradle for the first time, many developers don&#8217;t know what Gradle can do for them. The purpose of this guide is to show some of the basic tasks that work in any Gradle build, regardless of type of project. In this guide, you&#8217;ll create a trivial Gradle project, invoke some of the basic Gradle commands, and get a sense of how Gradle manages the project.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="what_you_ll_need"><a class="anchor" href="#what_you_ll_need"></a>What you&#8217;ll need</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>About <span class="time-to-complete-text"></span></p>
+</li>
+<li>
+<p>A text editor or IDE</p>
+</li>
+<li>
+<p>A Java Development Kit (JDK), version 1.7 or better (only necessary to run Gradle)</p>
+</li>
+<li>
+<p>A <a href="https://gradle.org/install">Gradle distribution</a>, version 3.5 or better</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="create_a_project"><a class="anchor" href="#create_a_project"></a>Create a project</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You can start a new project simply by creating a <code>build.gradle</code> file and adding build logic to it. To keep this example as simple as possible, create a new directory and add an empty file called <code>build.gradle</code> to it.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Shell commands will shown for Unix-based systems. Windows has analogous commands for each.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ mkdir basic-demo
 $ cd basic-demo
-$ touch build.gradle <i class="conum" data-value="1"></i><b>(1)</b></pre> 
-      </div> 
-     </div> 
-     <div class="colist arabic"> 
-      <table> 
-       <tbody>
-        <tr> 
-         <td><i class="conum" data-value="1"></i><b>1</b></td> 
-         <td>Create an empty file called <code>build.gradle</code></td> 
-        </tr> 
-       </tbody>
-      </table> 
-     </div> 
-    </div> 
-   </div> 
-   <div class="sect1"> 
-    <h2 id="run_the_code_tasks_code_command"><a class="anchor" href="#run_the_code_tasks_code_command"></a>Run the <code>tasks</code> command</h2> 
-    <div class="sectionbody"> 
-     <div class="paragraph"> 
-      <p>Gradle is a general-purpose build tool for projects. Gradle itself is built on an object-oriented API, which is made up of many classes and methods, along with a simple syntax for configuring them. The build file itself configures an instance of the <code>org.gradle.api.Project</code> class, which has many built-in properties and methods. From the <code>Project</code>, you have access to all of Gradle’s features.</p> 
-     </div> 
-     <div class="paragraph"> 
-      <p>By default, the name of the build file is called <code>build.gradle</code>. A <code>Project</code> includes a collection of <em>tasks</em>, each of which performs some basic operation.</p> 
-     </div> 
-     <div class="paragraph"> 
-      <p>To see what tasks are available even in this otherwise empty project, run the <code>tasks</code> command at the command prompt.</p> 
-     </div> 
-     <div class="listingblock"> 
-      <div class="content"> 
-       <pre>$ gradle tasks
+$ touch build.gradle <i class="conum" data-value="1"></i><b>(1)</b></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Create an empty file called <code>build.gradle</code></td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="run_the_code_tasks_code_command"><a class="anchor" href="#run_the_code_tasks_code_command"></a>Run the <code>tasks</code> command</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Gradle is a general-purpose build tool for projects. Gradle itself is built on an object-oriented API, which is made up of many classes and methods, along with a simple syntax for configuring them. The build file itself configures an instance of the <code>org.gradle.api.Project</code> class, which has many built-in properties and methods. From the <code>Project</code>, you have access to all of Gradle&#8217;s features.</p>
+</div>
+<div class="paragraph">
+<p>By default, the name of the build file is called <code>build.gradle</code>. A <code>Project</code> includes a collection of <em>tasks</em>, each of which performs some basic operation.</p>
+</div>
+<div class="paragraph">
+<p>To see what tasks are available even in this otherwise empty project, run the <code>tasks</code> command at the command prompt.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ gradle tasks
 :tasks
 
 ------------------------------------------------------------
@@ -152,36 +158,38 @@ To see all tasks and more detail, run gradle tasks --all
 
 To see more detail about a task, run gradle help --task &lt;task&gt;
 
-BUILD SUCCESSFUL</pre> 
-      </div> 
-     </div> 
-     <div class="paragraph"> 
-      <p>As the output shows, Gradle tasks are organized into categories, like <code>Build Setup</code> or <code>Help</code>, and each has a name and an optional description. You can define your own (known as <em>ad hoc</em>) tasks, configure tasks provided by the Gradle library, or use tasks that are added by plugins.</p> 
-     </div> 
-    </div> 
-   </div> 
-   <div class="sect1"> 
-    <h2 id="generate_a_gradle_wrapper"><a class="anchor" href="#generate_a_gradle_wrapper"></a>Generate a Gradle wrapper</h2> 
-    <div class="sectionbody"> 
-     <div class="paragraph"> 
-      <p>As the output from the <code>tasks</code> command shows, the <code>wrapper</code> task generates a Gradle wrapper file. The wrapper is a small script and supporting jar and properties file that allows a user to execute Gradle tasks even if they don’t already have Gradle installed. Generating a wrapper also ensures that the user will use the same version of Gradle as the person who created the project.</p> 
-     </div> 
-     <div class="admonitionblock tip"> 
-      <table> 
-       <tbody>
-        <tr> 
-         <td class="icon"> <i class="fa icon-tip" title="Tip"></i> </td> 
-         <td class="content"> While Gradle versions are very good about supporting backward compatibility, using a wrapper ensures that the user is working with a version of Gradle that the project creator supports, and is therefore considered a good practice. </td> 
-        </tr> 
-       </tbody>
-      </table> 
-     </div> 
-     <div class="paragraph"> 
-      <p>Details about the <code>wrapper</code> task can be seen through the <code>help</code> task.</p> 
-     </div> 
-     <div class="listingblock"> 
-      <div class="content"> 
-       <pre>$ gradle help --task wrapper
+BUILD SUCCESSFUL</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>As the output shows, Gradle tasks are organized into categories, like <code>Build Setup</code> or <code>Help</code>, and each has a name and an optional description. You can define your own (known as <em>ad hoc</em>) tasks, configure tasks provided by the Gradle library, or use tasks that are added by plugins.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="generate_a_gradle_wrapper"><a class="anchor" href="#generate_a_gradle_wrapper"></a>Generate a Gradle wrapper</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>As the output from the <code>tasks</code> command shows, the <code>wrapper</code> task generates a Gradle wrapper file. The wrapper is a small script and supporting jar and properties file that allows a user to execute Gradle tasks even if they don&#8217;t already have Gradle installed. Generating a wrapper also ensures that the user will use the same version of Gradle as the person who created the project.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+While Gradle versions are very good about supporting backward compatibility, using a wrapper ensures that the user is working with a version of Gradle that the project creator supports, and is therefore considered a good practice.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Details about the <code>wrapper</code> task can be seen through the <code>help</code> task.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ gradle help --task wrapper
 :help
 Detailed task information for wrapper
 
@@ -207,81 +215,81 @@ Description
 Group
      Build Setup
 
-BUILD SUCCESSFUL</pre> 
-      </div> 
-     </div> 
-     <div class="paragraph"> 
-      <p>By default, the <code>wrapper</code> task will generate a wrapper that uses the binary distribution of the same version as the Gradle command. Generate that wrapper now.</p> 
-     </div> 
-     <div class="listingblock"> 
-      <div class="content"> 
-       <pre>$ gradle wrapper
+BUILD SUCCESSFUL</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>By default, the <code>wrapper</code> task will generate a wrapper that uses the binary distribution of the same version as the Gradle command. Generate that wrapper now.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ gradle wrapper
 :wrapper
 
-BUILD SUCCESSFUL</pre> 
-      </div> 
-     </div> 
-     <div class="paragraph"> 
-      <p>This generates a Unix script called <code>gradlew</code> and a Windows command called <code>gradlew.bat</code>, along with a jar file and a properties file. The resulting directory structure looks like:</p> 
-     </div> 
-     <div class="listingblock"> 
-      <div class="content"> 
-       <pre>.
+BUILD SUCCESSFUL</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This generates a Unix script called <code>gradlew</code> and a Windows command called <code>gradlew.bat</code>, along with a jar file and a properties file. The resulting directory structure looks like:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>.
 ├── build.gradle
 ├── gradle
-│&nbsp;&nbsp; └── wrapper
-│&nbsp;&nbsp;     ├── gradle-wrapper.jar
-│&nbsp;&nbsp;     └── gradle-wrapper.properties
+│   └── wrapper
+│       ├── gradle-wrapper.jar
+│       └── gradle-wrapper.properties
 ├── gradlew          <i class="conum" data-value="1"></i><b>(1)</b>
-└── gradlew.bat      <i class="conum" data-value="2"></i><b>(2)</b></pre> 
-      </div> 
-     </div> 
-     <div class="colist arabic"> 
-      <table> 
-       <tbody>
-        <tr> 
-         <td><i class="conum" data-value="1"></i><b>1</b></td> 
-         <td>Wrapper script for Unix-based systems</td> 
-        </tr> 
-        <tr> 
-         <td><i class="conum" data-value="2"></i><b>2</b></td> 
-         <td>Wrapper script for Windows</td> 
-        </tr> 
-       </tbody>
-      </table> 
-     </div> 
-     <div class="paragraph"> 
-      <p>All subsequent commands in this guide will use the wrapper.</p> 
-     </div> 
-    </div> 
-   </div> 
-   <div class="sect1"> 
-    <h2 id="run_the_code_properties_code_task"><a class="anchor" href="#run_the_code_properties_code_task"></a>Run the <code>properties</code> task</h2> 
-    <div class="sectionbody"> 
-     <div class="paragraph"> 
-      <p>If the <code>tasks</code> task tells you what tasks are available, the <code>properties</code> command does the same for the project’s attributes. Try that command as well.</p> 
-     </div> 
-     <div class="listingblock"> 
-      <div class="content"> 
-       <pre>$ ./gradlew properties</pre> 
-      </div> 
-     </div> 
-     <div class="admonitionblock note"> 
-      <table> 
-       <tbody>
-        <tr> 
-         <td class="icon"> <i class="fa icon-note" title="Note"></i> </td> 
-         <td class="content"> On Windows, you don’t need the leading <code>./</code> in front of the <code>gradlew</code> command. </td> 
-        </tr> 
-       </tbody>
-      </table> 
-     </div> 
-     <div class="paragraph"> 
-      <p>The output is extensive. Here are just a few of the available properties:</p> 
-     </div> 
-     <div class="listingblock"> 
-      <div class="content"> 
-       <pre>:properties
+└── gradlew.bat      <i class="conum" data-value="2"></i><b>(2)</b></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Wrapper script for Unix-based systems</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Wrapper script for Windows</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>All subsequent commands in this guide will use the wrapper.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="run_the_code_properties_code_task"><a class="anchor" href="#run_the_code_properties_code_task"></a>Run the <code>properties</code> task</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If the <code>tasks</code> task tells you what tasks are available, the <code>properties</code> command does the same for the project&#8217;s attributes. Try that command as well.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ ./gradlew properties</pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+On Windows, you don&#8217;t need the leading <code>./</code> in front of the <code>gradlew</code> command.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The output is extensive. Here are just a few of the available properties:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>:properties
 
 ------------------------------------------------------------
 Root project
@@ -295,138 +303,144 @@ name: basic-demo
 projectDir: /Users/.../basic-demo
 version: unspecified
 
-BUILD SUCCESSFUL</pre> 
-      </div> 
-     </div> 
-     <div class="paragraph"> 
-      <p>The <code>name</code> of the project matches the name of the folder by default. You can also specify <code>group</code> and <code>version</code> properties, but at the moment they are taking their default values, as is <code>description</code>.</p> 
-     </div> 
-     <div class="paragraph"> 
-      <p>The <code>buildFile</code> property is fully-qualified path name to <code>build.gradle</code>, which resides in the <code>buildDir</code> — by default, the <code>build</code> subdirectory of the <code>projectDir</code>, the directory containing the <code>build.gradle</code> file.</p> 
-     </div> 
-     <div class="paragraph"> 
-      <p>You can change many of the properties. Add the following lines to your <code>build.gradle</code> file:</p> 
-     </div> 
-     <div class="listingblock"> 
-      <div class="content"> 
-       <pre class="CodeRay highlight"><code data-lang="groovy">description = <span class="string"><span class="delimiter">'</span><span class="content">A trivial Gradle build</span><span class="delimiter">'</span></span>
-version = <span class="string"><span class="delimiter">'</span><span class="content">1.0</span><span class="delimiter">'</span></span></code></pre> 
-      </div> 
-     </div> 
-     <div class="paragraph"> 
-      <p>Now run the <code>properties</code> task again and see the updated values of the <code>description</code> and <code>version</code> fields.</p> 
-     </div> 
-     <div class="listingblock"> 
-      <div class="content"> 
-       <pre>$ ./gradlew properties
+BUILD SUCCESSFUL</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>name</code> of the project matches the name of the folder by default. You can also specify <code>group</code> and <code>version</code> properties, but at the moment they are taking their default values, as is <code>description</code>.</p>
+</div>
+<div class="paragraph">
+<p>The <code>buildFile</code> property is fully-qualified path name to <code>build.gradle</code>, which resides in the <code>buildDir</code>&#8201;&#8212;&#8201;by default, the <code>build</code> subdirectory of the <code>projectDir</code>, the directory containing the <code>build.gradle</code> file.</p>
+</div>
+<div class="paragraph">
+<p>You can change many of the properties. Add the following lines to your <code>build.gradle</code> file:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy">description = <span class="string"><span class="delimiter">'</span><span class="content">A trivial Gradle build</span><span class="delimiter">'</span></span>
+version = <span class="string"><span class="delimiter">'</span><span class="content">1.0</span><span class="delimiter">'</span></span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now run the <code>properties</code> task again and see the updated values of the <code>description</code> and <code>version</code> fields.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ ./gradlew properties
 :properties
 ...
 description: A trivial Gradle build
 ...
 version: 1.0
-....</pre> 
-      </div> 
-     </div> 
-    </div> 
-   </div> 
-   <div class="sect1"> 
-    <h2 id="configure_a_gradle_core_task"><a class="anchor" href="#configure_a_gradle_core_task"></a>Configure a Gradle core task</h2> 
-    <div class="sectionbody"> 
-     <div class="paragraph"> 
-      <p>Gradle comes with a library of tasks that you can configure in your own projects. For example, there is a core type called <code>Copy</code>, which copies files from one location to another. The <code>Copy</code> task is very powerful (see the documentation for details), but here, once again, keep it simple. Perform the following steps:</p> 
-     </div> 
-     <div class="olist arabic"> 
-      <ol class="arabic"> 
-       <li> <p>Create a directory called <code>src</code>.</p> </li> 
-       <li> <p>Add a file called <code>myfile.txt</code> in the <code>src</code> directory. The contents are arbitrary (it can even be empty), but for convenience add the single line <code>Hello, World!</code> to it.</p> </li> 
-       <li> <p>Define a task called <code>copy</code> of type <code>Copy</code> (note the capital letter) that copies the <code>src</code> directory to a new directory called <code>dest</code>. (You don’t have to create the <code>dest</code> directory — the task will do it for you.) The syntax is:</p> 
-        <div class="listingblock"> 
-         <div class="content"> 
-          <pre class="CodeRay highlight"><code data-lang="groovy">task copy(<span class="key">type</span>: Copy) {
+....</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="configure_a_gradle_core_task"><a class="anchor" href="#configure_a_gradle_core_task"></a>Configure a Gradle core task</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Gradle comes with a library of tasks that you can configure in your own projects. For example, there is a core type called <code>Copy</code>, which copies files from one location to another. The <code>Copy</code> task is very powerful (see the documentation for details), but here, once again, keep it simple. Perform the following steps:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a directory called <code>src</code>.</p>
+</li>
+<li>
+<p>Add a file called <code>myfile.txt</code> in the <code>src</code> directory. The contents are arbitrary (it can even be empty), but for convenience add the single line <code>Hello, World!</code> to it.</p>
+</li>
+<li>
+<p>Define a task called <code>copy</code> of type <code>Copy</code> (note the capital letter) that copies the <code>src</code> directory to a new directory called <code>dest</code>. (You don&#8217;t have to create the <code>dest</code> directory&#8201;&#8212;&#8201;the task will do it for you.) The syntax is:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy">task copy(<span class="key">type</span>: Copy) {
     from <span class="string"><span class="delimiter">'</span><span class="content">src</span><span class="delimiter">'</span></span>
     into <span class="string"><span class="delimiter">'</span><span class="content">dest</span><span class="delimiter">'</span></span>
-}</code></pre> 
-         </div> 
-        </div> 
-        <div class="paragraph"> 
-         <p>Now you can run the <code>tasks</code> command with the <code>--all</code> flag to see the new task:</p> 
-        </div> </li> 
-      </ol> 
-     </div> 
-     <div class="listingblock"> 
-      <div class="content"> 
-       <pre>$ ./gradlew tasks --all
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now you can run the <code>tasks</code> command with the <code>--all</code> flag to see the new task:</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ ./gradlew tasks --all
 :tasks
 ...
 Other tasks
 -----------
-copy</pre> 
-      </div> 
-     </div> 
-     <div class="paragraph"> 
-      <p>Execute the <code>copy</code> task:</p> 
-     </div> 
-     <div class="listingblock"> 
-      <div class="content"> 
-       <pre>$ ./gradlew copy
+copy</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Execute the <code>copy</code> task:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ ./gradlew copy
 :copy
 
-BUILD SUCCESSFUL</pre> 
-      </div> 
-     </div> 
-     <div class="paragraph"> 
-      <p>Verify that it worked as expected by checking that there is now a file called <code>myfile.txt</code> in the <code>dest</code> directory, and that its contents match the contents of the same one in the <code>src</code> directory.</p> 
-     </div> 
-    </div> 
-   </div> 
-   <div class="sect1"> 
-    <h2 id="configure_a_core_task_and_use_a_plugin"><a class="anchor" href="#configure_a_core_task_and_use_a_plugin"></a>Configure a core task and use a plugin</h2> 
-    <div class="sectionbody"> 
-     <div class="paragraph"> 
-      <p>Gradle includes a range of plugins, and many, many more are available at <a href="http://plugins.gradle.org">the Gradle plugin portal</a>. One of the plugins included with the distribution is the <code>base</code> plugin. Combined with a core type called <code>Zip</code>, you can create a zip archive of your project with a configured name and location.</p> 
-     </div> 
-     <div class="paragraph"> 
-      <p>Add the <code>base</code> plugin to your <code>build.gradle</code> file using the <code>plugins</code> syntax. Be sure to add the <code>plugins</code> block at the top of the file.</p> 
-     </div> 
-     <div class="listingblock"> 
-      <div class="content"> 
-       <pre class="CodeRay highlight"><code data-lang="groovy">plugins {
+BUILD SUCCESSFUL</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Verify that it worked as expected by checking that there is now a file called <code>myfile.txt</code> in the <code>dest</code> directory, and that its contents match the contents of the same one in the <code>src</code> directory.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="configure_a_core_task_and_use_a_plugin"><a class="anchor" href="#configure_a_core_task_and_use_a_plugin"></a>Configure a core task and use a plugin</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Gradle includes a range of plugins, and many, many more are available at <a href="http://plugins.gradle.org">the Gradle plugin portal</a>. One of the plugins included with the distribution is the <code>base</code> plugin. Combined with a core type called <code>Zip</code>, you can create a zip archive of your project with a configured name and location.</p>
+</div>
+<div class="paragraph">
+<p>Add the <code>base</code> plugin to your <code>build.gradle</code> file using the <code>plugins</code> syntax. Be sure to add the <code>plugins</code> block at the top of the file.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy">plugins {
     id <span class="string"><span class="delimiter">'</span><span class="content">base</span><span class="delimiter">'</span></span>
 }
 
-... rest of the build file ...</code></pre> 
-      </div> 
-     </div> 
-     <div class="paragraph"> 
-      <p>Now add a task that creates a zip archive from the <code>src</code> directory.</p> 
-     </div> 
-     <div class="listingblock"> 
-      <div class="content"> 
-       <pre class="CodeRay highlight"><code data-lang="groovy">task zip(<span class="key">type</span>: Zip) {
+... rest of the build file ...</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now add a task that creates a zip archive from the <code>src</code> directory.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy">task zip(<span class="key">type</span>: Zip) {
     from <span class="string"><span class="delimiter">'</span><span class="content">src</span><span class="delimiter">'</span></span>
-}</code></pre> 
-      </div> 
-     </div> 
-     <div class="paragraph"> 
-      <p>The <code>base</code> plugin works with the settings to create an archive file called <code>basic-demo-1.0.zip</code> in the <code>libraries</code> folder under <code>build\distributions</code>.</p> 
-     </div> 
-     <div class="paragraph"> 
-      <p>In this case, simply run the new <code>zip</code> task and see that the generated zip file is where you expect.</p> 
-     </div> 
-     <div class="listingblock"> 
-      <div class="content"> 
-       <pre>$ ./gradlew zip
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>base</code> plugin works with the settings to create an archive file called <code>basic-demo-1.0.zip</code> in the <code>libraries</code> folder under <code>build\distributions</code>.</p>
+</div>
+<div class="paragraph">
+<p>In this case, simply run the new <code>zip</code> task and see that the generated zip file is where you expect.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ ./gradlew zip
 zip:
 
-BUILD SUCCESSFUL</pre> 
-      </div> 
-     </div> 
-     <div class="paragraph"> 
-      <p>Run the <code>tasks</code> command again to see the tasks added by the <code>basic</code> plugin.</p> 
-     </div> 
-     <div class="listingblock"> 
-      <div class="content"> 
-       <pre>$ ./gradlew tasks --all
+BUILD SUCCESSFUL</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Run the <code>tasks</code> command again to see the tasks added by the <code>basic</code> plugin.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ ./gradlew tasks --all
 tasks:
 
 Build tasks
@@ -440,99 +454,115 @@ clean - Deletes the build directory.
 Other tasks
 -----------
 copy
-zip</pre> 
-      </div> 
-     </div> 
-     <div class="paragraph"> 
-      <p>The <code>assemble</code> and <code>build</code> tasks aren’t useful in this project, because they are associated with compilation and generation of a release artifact. Many of the language plugins, like the <code>java</code> plugin, are created on top the <code>base</code> plugin.</p> 
-     </div> 
-     <div class="paragraph"> 
-      <p>The <code>clean</code> task, however, is an easy way to remove the <code>build</code> directory.</p> 
-     </div> 
-     <div class="listingblock"> 
-      <div class="content"> 
-       <pre>$ ./gradlew clean
+zip</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>assemble</code> and <code>build</code> tasks aren&#8217;t useful in this project, because they are associated with compilation and generation of a release artifact. Many of the language plugins, like the <code>java</code> plugin, are created on top the <code>base</code> plugin.</p>
+</div>
+<div class="paragraph">
+<p>The <code>clean</code> task, however, is an easy way to remove the <code>build</code> directory.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ ./gradlew clean
 clean:
 
-BUILD SUCCESSFUL</pre> 
-      </div> 
-     </div> 
-     <div class="paragraph"> 
-      <p>The <code>build</code> directory should now be gone.</p> 
-     </div> 
-    </div> 
-   </div> 
-   <div class="sect1"> 
-    <h2 id="add_a_hello_world_task"><a class="anchor" href="#add_a_hello_world_task"></a>Add a "Hello, World!" task</h2> 
-    <div class="sectionbody"> 
-     <div class="paragraph"> 
-      <p>Since every technology needs a "Hello, World!" example, add an ad hoc task to your Gradle build. The syntax is:</p> 
-     </div> 
-     <div class="listingblock"> 
-      <div class="content"> 
-       <pre class="CodeRay highlight"><code data-lang="groovy">task hello {
+BUILD SUCCESSFUL</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>build</code> directory should now be gone.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="add_a_hello_world_task"><a class="anchor" href="#add_a_hello_world_task"></a>Add a "Hello, World!" task</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Since every technology needs a "Hello, World!" example, add an ad hoc task to your Gradle build. The syntax is:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy">task hello {
     doLast {
         println <span class="string"><span class="delimiter">'</span><span class="content">Hello, World!</span><span class="delimiter">'</span></span>
     }
-}</code></pre> 
-      </div> 
-     </div> 
-     <div class="paragraph"> 
-      <p>When executed, this task will print the string "Hello, World!" to the console.</p> 
-     </div> 
-     <div class="listingblock"> 
-      <div class="content"> 
-       <pre>$ ./gradlew hello
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When executed, this task will print the string "Hello, World!" to the console.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ ./gradlew hello
 :hello
 Hello, World!
 
-BUILD SUCCESSFUL</pre> 
-      </div> 
-     </div> 
-     <div class="paragraph"> 
-      <p>The contents of the <code>hello</code> task use commands from the Gradle DSL, like <code>task</code> and <code>doLast</code>. Writing your own tasks is an interesting topic, but beyond the scope of this guide. See <a href="https://guides.gradle.org/writing-gradle-tasks">Writing Custom Gradle Tasks</a> for details.</p> 
-     </div> 
-    </div> 
-   </div> 
-   <div class="sect1"> 
-    <h2 id="next_steps"><a class="anchor" href="#next_steps"></a>Next Steps</h2> 
-    <div class="sectionbody"> 
-     <div class="paragraph"> 
-      <p>If you are specifically interested in building <strong>Java</strong> applications, read the <a href="https://guides.gradle.org/creating-java-applications">Getting Started Building Java Applications</a> guide. You should also read the <a href="https://docs.gradle.org/3.5/userguide/tutorial_java_projects.html">Java Quickstart</a> chapter of the user manual. To learn about creating other kinds of popular Gradle builds, follow these readings for the type of project you want:</p> 
-     </div> 
-     <div class="ulist"> 
-      <div class="title">
-       Documentation for other popular project types
-      </div> 
-      <ul> 
-       <li> <p><strong>C</strong>, <strong>C*, *Assembler*, *Objective-c*, *Objective-c</strong>: <a href="https://docs.gradle.org/3.5/userguide/native_software.html">Native builds</a></p> </li> 
-       <li> <p><strong>Scala</strong>: <a href="https://guides.gradle.org/building-scala-libraries">Scala plugin</a></p> </li> 
-       <li> <p><strong>Groovy</strong>: <a href="https://guides.gradle.org/building-groovy-libraries">Groovy quickstart</a></p> </li> 
-       <li> <p><strong>Android</strong>: <a href="http://tools.android.com/tech-docs/new-build-system/user-guide">Android userguide</a></p> </li> 
-      </ul> 
-     </div> 
-     <div class="sect2"> 
-      <h3 id="additional_information"><a class="anchor" href="#additional_information"></a>Additional information</h3> 
-      <div class="paragraph"> 
-       <p>Gradle is a very powerful tool, which means you need a good understanding of the underlying model to create maintainable builds. Fortunately, there are just&nbsp;a few core concepts to understand:</p> 
-      </div> 
-      <div class="ulist"> 
-       <ul> 
-        <li> <p><strong>Build phases</strong>: read the first section of the <a href="https://docs.gradle.org/3.5/userguide/build_lifecycle.html">build lifecycle chapter</a> for a description of these.</p> </li> 
-        <li> <p><strong>Properties</strong>: The project API and <a href="https://docs.gradle.org/3.5/userguide/writing_build_scripts.html">properties</a></p> </li> 
-        <li> <p><strong>Tasks</strong>: <a href="https://docs.gradle.org/3.5/userguide/more_about_tasks.html">Tasks</a></p> </li> 
-        <li> <p><strong>File handling</strong>: <a href="https://docs.gradle.org/3.5/userguide/working_with_files.html">File handling</a></p> </li> 
-        <li> <p><strong>Dependency management</strong>: <a href="https://docs.gradle.org/3.5/userguide/artifact_dependencies_tutorial.html">Dependency management</a></p> </li> 
-       </ul> 
-      </div> 
-     </div> 
-    </div> 
-   </div> 
-  </div> 
-  <div id="footer"> 
-   <div id="footer-text">
-     Last updated 2017-05-30 15:38:42 UTC 
-   </div> 
-  </div>  
- </body>
+BUILD SUCCESSFUL</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The contents of the <code>hello</code> task use commands from the Gradle DSL, like <code>task</code> and <code>doLast</code>. Writing your own tasks is an interesting topic, but beyond the scope of this guide. See <a href="https://guides.gradle.org/writing-gradle-tasks">Writing Custom Gradle Tasks</a> for details.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="next_steps"><a class="anchor" href="#next_steps"></a>Next Steps</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If you are specifically interested in building <strong>Java</strong> applications, read the <a href="https://guides.gradle.org/creating-java-applications">Getting Started Building Java Applications</a> guide. You should also read the <a href="https://docs.gradle.org/3.5/userguide/tutorial_java_projects.html">Java Quickstart</a> chapter of the user manual. To learn about creating other kinds of popular Gradle builds, follow these readings for the type of project you want:</p>
+</div>
+<div class="ulist">
+<div class="title">Documentation for other popular project types</div>
+<ul>
+<li>
+<p><strong>C</strong>, <strong>C*, *Assembler*, *Objective-c*, *Objective-c</strong>: <a href="https://docs.gradle.org/3.5/userguide/native_software.html">Native builds</a></p>
+</li>
+<li>
+<p><strong>Scala</strong>: <a href="https://guides.gradle.org/building-scala-libraries">Scala plugin</a></p>
+</li>
+<li>
+<p><strong>Groovy</strong>: <a href="https://guides.gradle.org/building-groovy-libraries">Groovy quickstart</a></p>
+</li>
+<li>
+<p><strong>Android</strong>: <a href="http://tools.android.com/tech-docs/new-build-system/user-guide">Android userguide</a></p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="additional_information"><a class="anchor" href="#additional_information"></a>Additional information</h3>
+<div class="paragraph">
+<p>Gradle is a very powerful tool, which means you need a good understanding of the underlying model to create maintainable builds. Fortunately, there are just a few core concepts to understand:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Build phases</strong>: read the first section of the <a href="https://docs.gradle.org/3.5/userguide/build_lifecycle.html">build lifecycle chapter</a> for a description of these.</p>
+</li>
+<li>
+<p><strong>Properties</strong>: The project API and <a href="https://docs.gradle.org/3.5/userguide/writing_build_scripts.html">properties</a></p>
+</li>
+<li>
+<p><strong>Tasks</strong>: <a href="https://docs.gradle.org/3.5/userguide/more_about_tasks.html">Tasks</a></p>
+</li>
+<li>
+<p><strong>File handling</strong>: <a href="https://docs.gradle.org/3.5/userguide/working_with_files.html">File handling</a></p>
+</li>
+<li>
+<p><strong>Dependency management</strong>: <a href="https://docs.gradle.org/3.5/userguide/artifact_dependencies_tutorial.html">Dependency management</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2017-06-12 19:44:33 UTC
+</div>
+</div>
+</body>
 </html>
