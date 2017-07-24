@@ -67,7 +67,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p>About <span class="time-to-complete-text"></span></p>
+<p>About <span class="time-to-complete-text">NN</span></p>
 </li>
 <li>
 <p>A text editor or IDE</p>
@@ -76,7 +76,7 @@
 <p>A Java Development Kit (JDK), version 1.7 or better (only necessary to run Gradle)</p>
 </li>
 <li>
-<p>A <a href="https://gradle.org/install">Gradle distribution</a>, version 3.5 or better</p>
+<p>A <a href="https://gradle.org/install">Gradle distribution</a>, version 4.0 or better</p>
 </li>
 </ul>
 </div>
@@ -100,7 +100,7 @@ Shell commands will shown for Unix-based systems. Windows has analogous commands
 </tr>
 </table>
 </div>
-<div class="listingblock">
+<div class="listingblock terminal">
 <div class="content">
 <pre>$ mkdir basic-demo
 $ cd basic-demo
@@ -129,9 +129,10 @@ $ touch build.gradle <i class="conum" data-value="1"></i><b>(1)</b></pre>
 <div class="paragraph">
 <p>To see what tasks are available even in this otherwise empty project, run the <code>tasks</code> command at the command prompt.</p>
 </div>
-<div class="listingblock">
+<div class="listingblock terminal">
 <div class="content">
 <pre>$ gradle tasks
+
 :tasks
 
 ------------------------------------------------------------
@@ -158,9 +159,7 @@ tasks - Displays the tasks runnable from root project 'basic-demo'.
 
 To see all tasks and more detail, run gradle tasks --all
 
-To see more detail about a task, run gradle help --task &lt;task&gt;
-
-BUILD SUCCESSFUL</pre>
+To see more detail about a task, run gradle help --task &lt;task&gt;</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -189,10 +188,11 @@ While Gradle versions are very good about supporting backward compatibility, usi
 <div class="paragraph">
 <p>Details about the <code>wrapper</code> task can be seen through the <code>help</code> task.</p>
 </div>
-<div class="listingblock">
+<div class="listingblock terminal">
 <div class="content">
 <pre>$ gradle help --task wrapper
-:help
+
+help
 Detailed task information for wrapper
 
 Path
@@ -215,15 +215,13 @@ Description
      Generates Gradle wrapper files.
 
 Group
-     Build Setup
-
-BUILD SUCCESSFUL</pre>
+     Build Setup</pre>
 </div>
 </div>
 <div class="paragraph">
 <p>By default, the <code>wrapper</code> task will generate a wrapper that uses the binary distribution of the same version as the Gradle command. Generate that wrapper now.</p>
 </div>
-<div class="listingblock">
+<div class="listingblock terminal">
 <div class="content">
 <pre>$ gradle wrapper
 :wrapper
@@ -326,7 +324,7 @@ version = <span class="string"><span class="delimiter">'</span><span class="cont
 <div class="paragraph">
 <p>Now run the <code>properties</code> task again and see the updated values of the <code>description</code> and <code>version</code> fields.</p>
 </div>
-<div class="listingblock">
+<div class="listingblock terminal">
 <div class="content">
 <pre>$ ./gradlew properties
 :properties
@@ -355,6 +353,9 @@ version: 1.0
 </li>
 <li>
 <p>Define a task called <code>copy</code> of type <code>Copy</code> (note the capital letter) that copies the <code>src</code> directory to a new directory called <code>dest</code>. (You don&#8217;t have to create the <code>dest</code> directory&#8201;&#8212;&#8201;the task will do it for you.) The syntax is:</p>
+</li>
+</ol>
+</div>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="groovy">task copy(<span class="key">type</span>: Copy) {
@@ -366,14 +367,13 @@ version: 1.0
 <div class="paragraph">
 <p>Now you can run the <code>tasks</code> command with the <code>--all</code> flag to see the new task:</p>
 </div>
-</li>
-</ol>
-</div>
-<div class="listingblock">
+<div class="listingblock terminal">
 <div class="content">
 <pre>$ ./gradlew tasks --all
+
 :tasks
 ...
+
 Other tasks
 -----------
 copy</pre>
@@ -385,9 +385,8 @@ copy</pre>
 <div class="listingblock">
 <div class="content">
 <pre>$ ./gradlew copy
-:copy
 
-BUILD SUCCESSFUL</pre>
+:copy</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -424,7 +423,7 @@ BUILD SUCCESSFUL</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The <code>base</code> plugin works with the settings to create an archive file called <code>basic-demo-1.0.zip</code> in the <code>libraries</code> folder under <code>build\distributions</code>.</p>
+<p>The <code>base</code> plugin works with the settings to create an archive file called <code>basic-demo-1.0.zip</code> in the <code>build/distributions</code> folder.</p>
 </div>
 <div class="paragraph">
 <p>In this case, simply run the new <code>zip</code> task and see that the generated zip file is where you expect.</p>
@@ -432,9 +431,8 @@ BUILD SUCCESSFUL</pre>
 <div class="listingblock">
 <div class="content">
 <pre>$ ./gradlew zip
-zip:
 
-BUILD SUCCESSFUL</pre>
+:zip</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -455,7 +453,6 @@ clean - Deletes the build directory.
 
 Other tasks
 -----------
-copy
 zip</pre>
 </div>
 </div>
@@ -514,13 +511,13 @@ BUILD SUCCESSFUL</pre>
 <h2 id="next_steps"><a class="anchor" href="#next_steps"></a>Next Steps</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>If you are specifically interested in building <strong>Java</strong> applications, read the <a href="https://guides.gradle.org/creating-java-applications">Getting Started Building Java Applications</a> guide. You should also read the <a href="https://docs.gradle.org/3.5/userguide/tutorial_java_projects.html">Java Quickstart</a> chapter of the user manual. To learn about creating other kinds of popular Gradle builds, follow these readings for the type of project you want:</p>
+<p>If you are specifically interested in building <strong>Java</strong> applications, read the <a href="https://guides.gradle.org/creating-java-applications">Getting Started Building Java Applications</a> guide. You should also read the <a href="https://docs.gradle.org/4.0/userguide/tutorial_java_projects.html">Java Quickstart</a> chapter of the user manual. To learn about creating other kinds of popular Gradle builds, follow these readings for the type of project you want:</p>
 </div>
 <div class="ulist">
 <div class="title">Documentation for other popular project types</div>
 <ul>
 <li>
-<p><strong>C</strong>, <strong>C*, *Assembler*, *Objective-c*, *Objective-c</strong>: <a href="https://docs.gradle.org/3.5/userguide/native_software.html">Native builds</a></p>
+<p><strong>C</strong>, <strong>C*, *Assembler*, *Objective-c*, *Objective-c</strong>: <a href="https://docs.gradle.org/4.0/userguide/native_software.html">Native builds</a></p>
 </li>
 <li>
 <p><strong>Scala</strong>: <a href="https://guides.gradle.org/building-scala-libraries">Scala plugin</a></p>
@@ -541,19 +538,19 @@ BUILD SUCCESSFUL</pre>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Build phases</strong>: read the first section of the <a href="https://docs.gradle.org/3.5/userguide/build_lifecycle.html">build lifecycle chapter</a> for a description of these.</p>
+<p><strong>Build phases</strong>: read the first section of the <a href="https://docs.gradle.org/4.0/userguide/build_lifecycle.html">build lifecycle chapter</a> for a description of these.</p>
 </li>
 <li>
-<p><strong>Properties</strong>: The project API and <a href="https://docs.gradle.org/3.5/userguide/writing_build_scripts.html">properties</a></p>
+<p><strong>Properties</strong>: The project API and <a href="https://docs.gradle.org/4.0/userguide/writing_build_scripts.html">properties</a></p>
 </li>
 <li>
-<p><strong>Tasks</strong>: <a href="https://docs.gradle.org/3.5/userguide/more_about_tasks.html">Tasks</a></p>
+<p><strong>Tasks</strong>: <a href="https://docs.gradle.org/4.0/userguide/more_about_tasks.html">Tasks</a></p>
 </li>
 <li>
-<p><strong>File handling</strong>: <a href="https://docs.gradle.org/3.5/userguide/working_with_files.html">File handling</a></p>
+<p><strong>File handling</strong>: <a href="https://docs.gradle.org/4.0/userguide/working_with_files.html">File handling</a></p>
 </li>
 <li>
-<p><strong>Dependency management</strong>: <a href="https://docs.gradle.org/3.5/userguide/artifact_dependencies_tutorial.html">Dependency management</a></p>
+<p><strong>Dependency management</strong>: <a href="https://docs.gradle.org/4.0/userguide/artifact_dependencies_tutorial.html">Dependency management</a></p>
 </li>
 </ul>
 </div>
@@ -571,7 +568,7 @@ BUILD SUCCESSFUL</pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-07-19 10:52:29 UTC
+Last updated 2017-07-24 10:35:25 UTC
 </div>
 </div>
 </body>
