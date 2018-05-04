@@ -3,14 +3,14 @@
 <head><link crossorigin href="//assets.gradle.com" rel="preconnect">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,400i">
 <link rel="stylesheet" href="https://guides.gradle.org/css/asciidoctor.css">
-<link rel="stylesheet" href="https://guides.gradle.org/css/docs-blue-theme-4.5.2.css">
+<link rel="stylesheet" href="https://guides.gradle.org/css/docs-blue-theme-4.7.css">
 <link rel="apple-touch-icon" sizes="180x180" href="https://guides.gradle.org/icon/apple-touch-icon.png">
 <link rel="icon" type="image/png" href="https://guides.gradle.org/icon/favicon-32x32.png" sizes="32x32">
 <link rel="icon" type="image/png" href="https://guides.gradle.org/icon/favicon-16x16.png" sizes="16x16">
 <link rel="manifest" href="https://guides.gradle.org/icon/manifest.json">
 <link rel="mask-icon" href="https://guides.gradle.org/icon/safari-pinned-tab.svg" color="#5bbad5">
 <link rel="shortcut icon" href="https://guides.gradle.org/icon/favicon.ico">
-<script defer src="https://guides.gradle.org/js/guides.js"></script>
+<script defer src="https://guides.gradle.org/js/guides-4.7.js"></script>
 <script defer src="https://guides.gradle.org/js/set-time-to-complete-text.js"></script>
 <script async src="https://guides.gradle.org/js/autotrack.js"></script>
 
@@ -21,7 +21,6 @@
 <meta name="author" content="Ken Kousen">
 <title>Creating New Gradle Builds</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
-<link rel="stylesheet" href="./coderay-asciidoctor.css">
 </head>
 <body class="article">
 <header class="site-layout__header site-header" itemscope="itemscope" itemtype="https://schema.org/WPHeader">
@@ -123,7 +122,7 @@
 <p>A Java Development Kit (JDK), version 1.7 or better (only necessary to run Gradle)</p>
 </li>
 <li>
-<p>A <a href="https://gradle.org/install">Gradle distribution</a>, version 4.6 or better</p>
+<p>A <a href="https://gradle.org/install">Gradle distribution</a>, version 4.7 or better</p>
 </li>
 </ul>
 </div>
@@ -192,7 +191,7 @@ BUILD SUCCESSFUL in 3s
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td><a href="https://docs.gradle.org/4.6/userguide/gradle_wrapper.html">Gradle Wrapper</a> executable JAR</td>
+<td><a href="https://docs.gradle.org/4.7/userguide/gradle_wrapper.html">Gradle Wrapper</a> executable JAR</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
@@ -219,7 +218,7 @@ BUILD SUCCESSFUL in 3s
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>gradle init</code> can generate <a href="https://docs.gradle.org/4.6/userguide/build_init_plugin.html#sec:build_init_types">various different types of projects</a>, and even knows how to translate simple <code>pom.xml</code> files to Gradle.
+<code>gradle init</code> can generate <a href="https://docs.gradle.org/4.7/userguide/build_init_plugin.html#sec:build_init_types">various different types of projects</a>, and even knows how to translate simple <code>pom.xml</code> files to Gradle.
 </td>
 </tr>
 </table>
@@ -233,10 +232,10 @@ BUILD SUCCESSFUL in 3s
 <h2 id="create_a_task"><a class="anchor" href="#create_a_task"></a><a class="link" href="#create_a_task">Create a task</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Gradle provides APIs for creating and configuring tasks through a Groovy or Kotlin-based DSL. A <a href="https://docs.gradle.org/4.6/dsl/org.gradle.api.Project.html"><code>Project</code></a> includes a collection of <a href="https://docs.gradle.org/4.6/dsl/org.gradle.api.Task.html"><code>Task</code></a>s, each of which performs some basic operation.</p>
+<p>Gradle provides APIs for creating and configuring tasks through a Groovy or Kotlin-based DSL. A <a href="https://docs.gradle.org/4.7/dsl/org.gradle.api.Project.html"><code>Project</code></a> includes a collection of <a href="https://docs.gradle.org/4.7/dsl/org.gradle.api.Task.html"><code>Task</code></a>s, each of which performs some basic operation.</p>
 </div>
 <div class="paragraph">
-<p>Gradle comes with a library of tasks that you can configure in your own projects. For example, there is a core type called <code>Copy</code>, which copies files from one location to another. The <code>Copy</code> task is very useful (<a href="https://docs.gradle.org/4.6/dsl/org.gradle.api.tasks.Copy.html">see the documentation</a> for details), but here, once again, let&#8217;s keep it simple. Perform the following steps:</p>
+<p>Gradle comes with a library of tasks that you can configure in your own projects. For example, there is a core type called <code>Copy</code>, which copies files from one location to another. The <code>Copy</code> task is very useful (<a href="https://docs.gradle.org/4.7/dsl/org.gradle.api.tasks.Copy.html">see the documentation</a> for details), but here, once again, let&#8217;s keep it simple. Perform the following steps:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -253,9 +252,9 @@ BUILD SUCCESSFUL in 3s
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy">task copy(<span class="key">type</span>: Copy, <span class="key">group</span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Custom</span><span class="delimiter">&quot;</span></span>, <span class="key">description</span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Copies sources to the dest directory</span><span class="delimiter">&quot;</span></span>) {
-    from <span class="string"><span class="delimiter">&quot;</span><span class="content">src</span><span class="delimiter">&quot;</span></span>
-    into <span class="string"><span class="delimiter">&quot;</span><span class="content">dest</span><span class="delimiter">&quot;</span></span>
+<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">task copy(type: Copy, group: "Custom", description: "Copies sources to the dest directory") {
+    from "src"
+    into "dest"
 }</code></pre>
 </div>
 </div>
@@ -283,15 +282,15 @@ BUILD SUCCESSFUL in 0s
 <h2 id="apply_a_plugin"><a class="anchor" href="#apply_a_plugin"></a><a class="link" href="#apply_a_plugin">Apply a plugin</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Gradle includes a range of plugins, and many, many more are available at <a href="http://plugins.gradle.org">the Gradle plugin portal</a>. One of the plugins included with the distribution is the <code>base</code> plugin. Combined with a core type called <code><a href="https://docs.gradle.org/4.6/dsl/org.gradle.api.tasks.bundling.Zip.html">Zip</a></code>, you can create a zip archive of your project with a configured name and location.</p>
+<p>Gradle includes a range of plugins, and many, many more are available at <a href="http://plugins.gradle.org">the Gradle plugin portal</a>. One of the plugins included with the distribution is the <code>base</code> plugin. Combined with a core type called <code><a href="https://docs.gradle.org/4.7/dsl/org.gradle.api.tasks.bundling.Zip.html">Zip</a></code>, you can create a zip archive of your project with a configured name and location.</p>
 </div>
 <div class="paragraph">
 <p>Add the <code>base</code> plugin to your <code>build.gradle</code> file using the <code>plugins</code> syntax. Be sure to add the <code>plugins {}</code> block at the top of the file.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy">plugins {
-    id <span class="string"><span class="delimiter">&quot;</span><span class="content">base</span><span class="delimiter">&quot;</span></span>
+<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">plugins {
+    id "base"
 }
 
 ... rest of the build file ...</code></pre>
@@ -302,8 +301,8 @@ BUILD SUCCESSFUL in 0s
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy">task zip(<span class="key">type</span>: Zip, <span class="key">group</span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Archive</span><span class="delimiter">&quot;</span></span>, <span class="key">description</span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Archives sources in a zip file</span><span class="delimiter">&quot;</span></span>) {
-    from <span class="string"><span class="delimiter">&quot;</span><span class="content">src</span><span class="delimiter">&quot;</span></span>
+<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">task zip(type: Zip, group: "Archive", description: "Archives sources in a zip file") {
+    from "src"
 }</code></pre>
 </div>
 </div>
@@ -328,7 +327,7 @@ BUILD SUCCESSFUL in 0s
 <h2 id="explore_and_debug_your_build"><a class="anchor" href="#explore_and_debug_your_build"></a><a class="link" href="#explore_and_debug_your_build">Explore and debug your build</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Let&#8217;s see what else we can do with Gradle in our new project. A full <a href="https://docs.gradle.org/4.6/userguide/command_line_interface.html">reference to the command-line interface</a> is available as well.</p>
+<p>Let&#8217;s see what else we can do with Gradle in our new project. A full <a href="https://docs.gradle.org/4.7/userguide/command_line_interface.html">reference to the command-line interface</a> is available as well.</p>
 </div>
 <div class="sect2">
 <h3 id="discover_available_code_tasks_code"><a class="anchor" href="#discover_available_code_tasks_code"></a><a class="link" href="#discover_available_code_tasks_code">Discover available <code>tasks</code></a></h3>
@@ -476,8 +475,8 @@ BUILD SUCCESSFUL</pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy">description = <span class="string"><span class="delimiter">&quot;</span><span class="content">A trivial Gradle build</span><span class="delimiter">&quot;</span></span>
-version = <span class="string"><span class="delimiter">&quot;</span><span class="content">1.0</span><span class="delimiter">&quot;</span></span></code></pre>
+<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">description = "A trivial Gradle build"
+version = "1.0"</code></pre>
 </div>
 </div>
 </div>
@@ -528,6 +527,9 @@ version = <span class="string"><span class="delimiter">&quot;</span><span class=
 </div>
 </div>
 </div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.js"></script>
+<script>prettyPrint()</script>
 <footer class="site-layout__footer site-footer" itemscope="itemscope" itemtype="https://schema.org/WPFooter">
     <nav class="site-footer__navigation" itemtype="https://schema.org/SiteNavigationElement">
         <section class="site-footer__links">
