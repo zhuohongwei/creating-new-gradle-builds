@@ -1,26 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><link crossorigin href="//assets.gradle.com" rel="preconnect">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,400i">
-<link rel="stylesheet" href="https://guides.gradle.org/css/asciidoctor.css">
-<link rel="stylesheet" href="https://guides.gradle.org/css/docs-blue-theme-4.7.css">
-<link rel="apple-touch-icon" sizes="180x180" href="https://guides.gradle.org/icon/apple-touch-icon.png">
-<link rel="icon" type="image/png" href="https://guides.gradle.org/icon/favicon-32x32.png" sizes="32x32">
-<link rel="icon" type="image/png" href="https://guides.gradle.org/icon/favicon-16x16.png" sizes="16x16">
-<link rel="manifest" href="https://guides.gradle.org/icon/manifest.json">
-<link rel="mask-icon" href="https://guides.gradle.org/icon/safari-pinned-tab.svg" color="#5bbad5">
-<link rel="shortcut icon" href="https://guides.gradle.org/icon/favicon.ico">
-<script defer src="https://guides.gradle.org/js/guides-4.7.js"></script>
-<script defer src="https://guides.gradle.org/js/set-time-to-complete-text.js"></script>
-<script async src="https://guides.gradle.org/js/autotrack.js"></script>
-
+<head>
 <meta charset="utf-8">
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.6.1">
-<meta name="author" content="Ken Kousen">
 <title>Creating New Gradle Builds</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+<link crossorigin href="//assets.gradle.com" rel="preconnect">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,400i">
+<link rel="stylesheet" href="https://guides.gradle.org/css/asciidoctor.css">
+<link rel="stylesheet" href="https://guides.gradle.org/css/docs-blue-theme-4.8.css">
+<link rel="apple-touch-icon" sizes="180x180" href="https://guides.gradle.org/icon/apple-touch-icon.png">
+<link rel="icon" type="image/png" href="https://guides.gradle.org/icon/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="https://guides.gradle.org/icon/favicon-16x16.png" sizes="16x16">
+<link rel="manifest" href="https://guides.gradle.org/icon/manifest.json">
+<link rel="shortcut icon" href="https://guides.gradle.org/icon/favicon.ico">
+<script defer src="https://guides.gradle.org/js/guides-4.8.js"></script>
+<script defer src="https://guides.gradle.org/js/set-time-to-complete-text.js"></script>
+<script async src="https://guides.gradle.org/js/autotrack.js"></script>
+
 </head>
 <body class="article">
 <header class="site-layout__header site-header" itemscope="itemscope" itemtype="https://schema.org/WPHeader">
@@ -81,11 +80,93 @@
         </div>
     </nav>
 </header>
+
+<main class="main-content">
+    <nav class="docs-navigation">
+        <ul>
+            <li><a href="https://docs.gradle.org/current/userguide/userguide.html">User Manual</a></li>
+            <li><a href="https://guides.gradle.org">Tutorials</a></li>
+            <li><a href="https://docs.gradle.org/current/dsl/">DSL Reference</a></li>
+            <li><a href="https://docs.gradle.org/current/release-notes.html">Release Notes</a></li>
+        </ul>
+
+        <h3 id="getting-started">Getting Started</h3>
+        <ul>
+            <li><a href="https://guides.gradle.org/creating-new-gradle-builds/">Creating New Gradle Builds</a></li>
+            <li><a href="https://guides.gradle.org/creating-build-scans/">Creating Build Scans</a></li>
+            <li><a href="https://guides.gradle.org/migrating-from-maven/">Migrating From Maven</a></li>
+        </ul>
+
+        <h3 id="tutorials">Project Tutorials</h3>
+        <ul>
+            <li><a class="nav-dropdown" data-toggle="collapse" href="#building-android-projects" aria-expanded="false" aria-controls="building-android-projects">Android</a>
+                <ul id="building-android-projects">
+                    <li><a href="https://guides.gradle.org/building-android-apps/">Building Android Apps</a></li>
+                </ul>
+            </li>
+            <li><a class="nav-dropdown" data-toggle="collapse" href="#building-cpp-projects" aria-expanded="false" aria-controls="building-cpp-projects">C++</a>
+                <ul id="building-cpp-projects">
+                    <li><a href="https://guides.gradle.org/building-cpp-executables/">Building C++ Executables</a></li>
+                    <li><a href="https://guides.gradle.org/building-cpp-libraries/">Building C++ Libraries</a></li>
+                </ul>
+            </li>
+            <li><a class="nav-dropdown" data-toggle="collapse" href="#building-groovy-projects" aria-expanded="false" aria-controls="building-groovy-projects">Groovy</a>
+                <ul id="building-groovy-projects">
+                    <li><a href="https://guides.gradle.org/building-groovy-libraries/">Building Groovy Libraries</a></li>
+                </ul>
+            </li>
+            <li><a class="nav-dropdown" data-toggle="collapse" href="#building-java-projects" aria-expanded="false" aria-controls="building-java-projects">Java</a>
+                <ul id="building-java-projects">
+                    <li><a href="https://guides.gradle.org/building-java-applications/">Building Java Applications</a></li>
+                    <li><a href="https://guides.gradle.org/building-java-libraries/">Building Java Libraries</a></li>
+                    <li><a href="https://guides.gradle.org/building-java-9-modules/">Building Java 9 Modules</a></li>
+                    <li><a href="https://guides.gradle.org/building-java-web-applications/">Building Java Web Applications</a></li>
+                </ul>
+            </li>
+            <li><a class="nav-dropdown" data-toggle="collapse" href="#building-javascript-projects" aria-expanded="false" aria-controls="building-javascript-projects">JavaScript</a>
+                <ul id="building-javascript-projects">
+                    <li><a href="https://guides.gradle.org/running-webpack-with-gradle/">Running Webpack with Gradle</a></li>
+                </ul>
+            </li>
+            <li><a class="nav-dropdown" data-toggle="collapse" href="#building-kotlin-projects" aria-expanded="false" aria-controls="building-kotlin-projects">Kotlin</a>
+                <ul id="building-kotlin-projects">
+                    <li><a href="https://guides.gradle.org/building-kotlin-jvm-libraries/">Building Kotlin JVM Libraries</a></li>
+                </ul>
+            </li>
+            <li><a class="nav-dropdown" data-toggle="collapse" href="#building-scala-projects" aria-expanded="false" aria-controls="building-scala-projects">Scala</a>
+                <ul id="building-scala-projects">
+                    <li><a href="https://guides.gradle.org/building-scala-libraries/">Building Scala Libraries</a></li>
+                </ul>
+            </li>
+        </ul>
+
+        <h3 id="integrating-gradle">Integrating Gradle</h3>
+        <ul>
+            <li><a class="nav-dropdown" data-toggle="collapse" href="#ci-integration" aria-expanded="false" aria-controls="ci-integration">Continuous Integration</a>
+                <ul id="ci-integration">
+                    <li><a href="https://guides.gradle.org/executing-gradle-builds-on-jenkins">Using Gradle with Jenkins</a></li>
+                    <li><a href="https://guides.gradle.org/executing-gradle-builds-on-teamcity">Using Gradle with TeamCity</a></li>
+                    <li><a href="https://guides.gradle.org/executing-gradle-builds-on-travisci">Using Gradle with Travis CI</a></li>
+                </ul>
+            </li>
+        </ul>
+
+        <h3 id="developing-gradle-plugins">Extending Gradle</h3>
+        <ul>
+            <li><a class="nav-dropdown" data-toggle="collapse" href="#plugins-tutorials" aria-expanded="false" aria-controls="plugins-tutorials">Plugin Development Guides</a>
+                <ul id="plugins-tutorials">
+                    <li><a href="https://guides.gradle.org/designing-gradle-plugins/">Designing Gradle Plugins</a></li>
+                    <li><a href="https://guides.gradle.org/implementing-gradle-plugins/">Implementing Gradle Plugins</a></li>
+                    <li><a href="https://guides.gradle.org/testing-gradle-plugins/">Testing Gradle Plugins</a></li>
+                    <li><a href="https://guides.gradle.org/publishing-plugins-to-gradle-plugin-portal/">Publishing Gradle Plugins</a></li>
+                </ul>
+            </li>
+            <li><a href="https://guides.gradle.org/using-the-worker-api/">Developing Parallel Tasks</a></li>
+        </ul>
+    </nav>
+    <div class="chapter">
 <div id="header">
 <h1>Creating New Gradle Builds</h1>
-<div class="details">
-<span id="author" class="author">Ken Kousen</span><br>
-</div>
 </div>
 <div id="content">
 <div id="preamble">
@@ -522,24 +603,26 @@ version = "1.0"</code></pre>
 <h2 id="help_improve_this_guide"><a class="anchor" href="#help_improve_this_guide"></a><a class="link" href="#help_improve_this_guide">Help improve this guide</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Have feedback or a question? Found a typo? Like all Gradle guides, help is just a GitHub issue away. Please add an issue or pull request to <a href="https://github.com/gradle-guides/creating-new-gradle-builds/">gradle-guides/creating-new-gradle-builds</a> and we&#8217;ll get back to you.</p>
+<p>Have feedback or a question? Found a typo? Like all Gradle guides, help is just a GitHub issue away. Please add an issue or pull request to <a href="https://github.com/gradle/gradle/">gradle/gradle</a> and we&#8217;ll get back to you.</p>
 </div>
 </div>
 </div>
 </div>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.js"></script>
-<script>prettyPrint()</script>
+    </div>
+    <!-- end div class="chapter" -->
+    <aside class="secondary-navigation"></aside>
+</main>
+
 <footer class="site-layout__footer site-footer" itemscope="itemscope" itemtype="https://schema.org/WPFooter">
     <nav class="site-footer__navigation" itemtype="https://schema.org/SiteNavigationElement">
         <section class="site-footer__links">
             <div class="site-footer__link-group">
                 <header><strong>Docs</strong></header>
                 <ul class="site-footer__links-list">
-                    <li itemprop="name"><a href="https://docs.gradle.org/current/userguide/userguide.html" itemprop="url">User Manual</a></li>
-                    <li itemprop="name"><a href="https://docs.gradle.org/current/dsl/" itemprop="url">DSL Reference</a></li>
-                    <li itemprop="name"><a href="https://guides.gradle.org" itemprop="url">Guides</a></li>
-                    <li itemprop="name"><a href="https://docs.gradle.org/current/javadoc/" itemprop="url">Javadoc</a></li>
+                    <li itemprop="name"><a href="/userguide/userguide.html" itemprop="url">User Manual</a></li>
+                    <li itemprop="name"><a href="/dsl/" itemprop="url">DSL Reference</a></li>
+                    <li itemprop="name"><a href="/release-notes.html" itemprop="url">Release Notes</a></li>
+                    <li itemprop="name"><a href="/javadoc/" itemprop="url">Javadoc</a></li>
                 </ul>
             </div>
             <div class="site-footer__link-group">
@@ -571,15 +654,16 @@ version = "1.0"</code></pre>
         <section class="site-footer__subscribe-newsletter">
             <p>Subscribe for important Gradle updates and news</p>
             <form id="newsletter-form" class="newsletter-form" action="https://go.pardot.com/l/68052/2017-12-01/b8dh7j" method="post">
-                <input id="email" class="email" name="email" type="email" placeholder="name@email.com" pattern="[^@s]+@[^@s]+.[^@s]+" maxlength="255" required=""/>
+                <input id="email" class="email" name="email" type="email" placeholder="name@email.com" pattern="[^@\s]+@[^@\s]+\.[^@\s]+" maxlength="255" required=""/>
                 <button id="submit" class="submit" type="submit">Subscribe</button>
             </form>
+            <p class="disclaimer">By entering your email, you agree to our <a href="https://gradle.org/terms/">Terms</a> and <a href="https://gradle.org/privacy/">Privacy Policy</a>, including receipt of emails. You can unsubscribe at any time.</p>
         </section>
     </nav>
     <div class="site-footer-secondary">
         <div class="site-footer-secondary__contents">
             <div class="site-footer__copy">© <a href="https://gradle.com">Gradle Inc.</a> <time>2018</time> All rights reserved.</div>
-            <div class="site-footer__logo"><a href="https://docs.gradle.org/current/"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" class="logo-icon"><g style="fill:none;opacity:0.7"><g fill="#11272E"><path d="M37.7 7.1C36.4 4.8 34 4 32.4 4 30.4 4 28.7 5.1 29 5.9 29.1 6 29.5 6.8 29.7 7.2 30 7.7 30.6 7.3 30.9 7.2 31.5 6.9 32.2 6.7 32.9 6.8 33.6 6.9 34.6 7.4 35.3 8.6 36.8 11.6 32.1 17.8 26.2 13.5 20.3 9.3 14.5 10.7 11.9 11.5 9.3 12.4 8.1 13.3 9.2 15.3 10.6 18 10.1 17.1 11.5 19.4 13.6 22.9 18.3 17.7 18.3 17.7 14.8 23 11.8 21.7 10.6 19.9 9.6 18.2 8.8 16.3 8.8 16.3 -0.1 19.5 2.3 33.6 2.3 33.6L6.7 33.6C7.9 28.4 11.9 28.6 12.6 33.6L15.9 33.6C18.9 23.5 26.4 33.6 26.4 33.6L30.8 33.6C29.6 26.7 33.3 24.5 35.6 20.5 37.9 16.4 40.1 11.5 37.7 7.1L37.7 7.1ZM26.3 20.5C24 19.7 24.9 17.3 24.9 17.3 24.9 17.3 26.9 18 29.6 18.9 29.5 19.6 28.1 21 26.3 20.5L26.3 20.5Z"/><path d="M28.4 18.7C28.5 19.3 28 19.9 27.3 20 26.6 20.1 26 19.6 26 18.9 25.9 18.3 26.4 17.7 27.1 17.6 27.7 17.6 28.3 18 28.4 18.7"/><path d="M37.7 7.1C36.4 4.8 34 4 32.4 4 30.4 4 28.7 5.1 29 5.9 29.1 6 29.5 6.8 29.7 7.2 30 7.7 30.6 7.3 30.9 7.2 31.5 6.9 32.2 6.7 32.9 6.8 33.6 6.9 34.6 7.4 35.3 8.6 36.8 11.6 32.1 17.8 26.2 13.5 20.3 9.3 14.5 10.7 11.9 11.5 9.3 12.4 8.1 13.3 9.2 15.3 10.6 18 10.1 17.1 11.5 19.4 13.6 22.9 18.3 17.7 18.3 17.7 14.8 23 11.8 21.7 10.6 19.9 9.6 18.2 8.8 16.3 8.8 16.3 -0.1 19.5 2.3 33.6 2.3 33.6L6.7 33.6C7.9 28.4 11.9 28.6 12.6 33.6L15.9 33.6C18.9 23.5 26.4 33.6 26.4 33.6L30.8 33.6C29.6 26.7 33.3 24.5 35.6 20.5 37.9 16.4 40.1 11.5 37.7 7.1L37.7 7.1ZM26.3 20.5C24 19.7 24.9 17.3 24.9 17.3 24.9 17.3 26.9 18 29.6 18.9 29.5 19.6 28.1 21 26.3 20.5L26.3 20.5Z"/><path d="M28.4 18.7C28.5 19.3 28 19.9 27.3 20 26.6 20.1 26 19.6 26 18.9 25.9 18.3 26.4 17.7 27.1 17.6 27.7 17.6 28.3 18 28.4 18.7"/></g></g></svg></a></div>
+            <div class="site-footer__logo"><a href="/"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" class="logo-icon"><g style="fill:none;opacity:0.7"><g fill="#11272E"><path d="M37.7 7.1C36.4 4.8 34 4 32.4 4 30.4 4 28.7 5.1 29 5.9 29.1 6 29.5 6.8 29.7 7.2 30 7.7 30.6 7.3 30.9 7.2 31.5 6.9 32.2 6.7 32.9 6.8 33.6 6.9 34.6 7.4 35.3 8.6 36.8 11.6 32.1 17.8 26.2 13.5 20.3 9.3 14.5 10.7 11.9 11.5 9.3 12.4 8.1 13.3 9.2 15.3 10.6 18 10.1 17.1 11.5 19.4 13.6 22.9 18.3 17.7 18.3 17.7 14.8 23 11.8 21.7 10.6 19.9 9.6 18.2 8.8 16.3 8.8 16.3 -0.1 19.5 2.3 33.6 2.3 33.6L6.7 33.6C7.9 28.4 11.9 28.6 12.6 33.6L15.9 33.6C18.9 23.5 26.4 33.6 26.4 33.6L30.8 33.6C29.6 26.7 33.3 24.5 35.6 20.5 37.9 16.4 40.1 11.5 37.7 7.1L37.7 7.1ZM26.3 20.5C24 19.7 24.9 17.3 24.9 17.3 24.9 17.3 26.9 18 29.6 18.9 29.5 19.6 28.1 21 26.3 20.5L26.3 20.5Z"/><path d="M28.4 18.7C28.5 19.3 28 19.9 27.3 20 26.6 20.1 26 19.6 26 18.9 25.9 18.3 26.4 17.7 27.1 17.6 27.7 17.6 28.3 18 28.4 18.7"/><path d="M37.7 7.1C36.4 4.8 34 4 32.4 4 30.4 4 28.7 5.1 29 5.9 29.1 6 29.5 6.8 29.7 7.2 30 7.7 30.6 7.3 30.9 7.2 31.5 6.9 32.2 6.7 32.9 6.8 33.6 6.9 34.6 7.4 35.3 8.6 36.8 11.6 32.1 17.8 26.2 13.5 20.3 9.3 14.5 10.7 11.9 11.5 9.3 12.4 8.1 13.3 9.2 15.3 10.6 18 10.1 17.1 11.5 19.4 13.6 22.9 18.3 17.7 18.3 17.7 14.8 23 11.8 21.7 10.6 19.9 9.6 18.2 8.8 16.3 8.8 16.3 -0.1 19.5 2.3 33.6 2.3 33.6L6.7 33.6C7.9 28.4 11.9 28.6 12.6 33.6L15.9 33.6C18.9 23.5 26.4 33.6 26.4 33.6L30.8 33.6C29.6 26.7 33.3 24.5 35.6 20.5 37.9 16.4 40.1 11.5 37.7 7.1L37.7 7.1ZM26.3 20.5C24 19.7 24.9 17.3 24.9 17.3 24.9 17.3 26.9 18 29.6 18.9 29.5 19.6 28.1 21 26.3 20.5L26.3 20.5Z"/><path d="M28.4 18.7C28.5 19.3 28 19.9 27.3 20 26.6 20.1 26 19.6 26 18.9 25.9 18.3 26.4 17.7 27.1 17.6 27.7 17.6 28.3 18 28.4 18.7"/></g></g></svg></a></div>
             <div class="site-footer-secondary__links">
                 <a href="https://gradle.com/careers" >Careers</a> |
                 <a href="https://gradle.org/privacy">Privacy</a> |
@@ -589,5 +673,52 @@ version = "1.0"</code></pre>
         </div>
     </div>
 </footer>
+
+<script type="text/javascript">
+    // Polyfill Element.matches()
+    if (!Element.prototype.matches) {
+        Element.prototype.matches = Element.prototype.msMatchesSelector || Element.prototype.webkitMatchesSelector;
+    }
+    // Polyfill Element.closest()
+    if (!Element.prototype.closest) {
+        Element.prototype.closest = function(s) {
+            var el = this;
+            if (!document.documentElement.contains(el)) return null;
+            do {
+                if (typeof el.matches === "function" && el.matches(s)) return el;
+                el = el.parentElement || el.parentNode;
+            } while (el !== null);
+            return null;
+        };
+    }
+    [].forEach.call(document.querySelectorAll(".docs-navigation a[href$='"+ window.location.pathname +"']"), function(link) {
+        // Add "active" to all links same as current URL
+        link.classList.add("active");
+
+        // Expand all parent navigation
+        var parentListEl = link.closest("li");
+        while (parentListEl !== null) {
+            var dropDownEl = parentListEl.querySelector(".nav-dropdown");
+            if (dropDownEl !== null) {
+                dropDownEl.classList.add("expanded");
+            }
+            parentListEl = parentListEl.parentNode.closest("li");
+        }
+    });
+
+    // Expand/contract multi-level side navigation
+    [].forEach.call(document.querySelectorAll(".docs-navigation .nav-dropdown"), function registerSideNavActions(collapsibleElement) {
+        collapsibleElement.addEventListener("click", function toggleExpandedSideNav(evt) {
+            evt.preventDefault();
+            evt.target.classList.toggle("expanded");
+            evt.target.setAttribute("aria-expanded", evt.target.classList.contains("expanded").toString());
+            return false;
+        }, false);
+    });
+</script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.js"></script>
+<script>prettyPrint()</script>
 </body>
 </html>
