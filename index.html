@@ -200,10 +200,10 @@
 <p>A terminal or IDE application</p>
 </li>
 <li>
-<p>A Java Development Kit (JDK), version 1.7 or better (only necessary to run Gradle)</p>
+<p>A Java Development Kit (JDK), version 1.7 or better if using the Gradle Groovy DSL, version 1.8 or better if using the Gradle Kotlin DSL (only necessary to run Gradle)</p>
 </li>
 <li>
-<p>A <a href="https://gradle.org/install">Gradle distribution</a>, version 4.7 or better</p>
+<p>A <a href="https://gradle.org/install">Gradle distribution</a>, version 4.8 or better</p>
 </li>
 </ul>
 </div>
@@ -238,12 +238,20 @@ Shell commands will shown for Unix-based systems. Windows has analogous commands
 </div>
 <div class="listingblock terminal">
 <div class="content">
-<pre>❯ gradle init
+<pre>❯ gradle init <i class="conum" data-value="1"></i><b>(1)</b>
 Starting a Gradle Daemon (subsequent builds will be faster)
 
 BUILD SUCCESSFUL in 3s
 2 actionable tasks: 2 executed</pre>
 </div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>If you want to use the Kotlin DSL use <code>gradle init --dsl kotlin</code>. See the <a href="https://docs.gradle.org/4.8/userguide/build_init_plugin.html#sec:what_to_set_up">documentation</a> for details.</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>The command should show "BUILD SUCCESSFUL" and generate the following "empty" project. If it doesn&#8217;t, please ensure that Gradle is <a href="https://gradle.org/install">installed properly</a>, and that you have the <code>JAVA_HOME</code> environment variable set correctly.</p>
@@ -251,17 +259,30 @@ BUILD SUCCESSFUL in 3s
 <div class="paragraph">
 <p>This is what Gradle generated for you.</p>
 </div>
-<div class="listingblock">
+<div class="listingblock multi-language-sample">
+<div class="title">Groovy</div>
 <div class="content">
-<pre>.
-├── build.gradle  <i class="conum" data-value="1"></i><b>(1)</b>
+<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">├── build.gradle  <i class="conum" data-value="1"></i><b>(1)</b>
 ├── gradle
 │   └── wrapper
 │       ├── gradle-wrapper.jar  <i class="conum" data-value="2"></i><b>(2)</b>
 │       └── gradle-wrapper.properties  <i class="conum" data-value="3"></i><b>(3)</b>
 ├── gradlew  <i class="conum" data-value="4"></i><b>(4)</b>
 ├── gradlew.bat  <i class="conum" data-value="5"></i><b>(5)</b>
-└── settings.gradle  <i class="conum" data-value="6"></i><b>(6)</b></pre>
+└── settings.gradle  <i class="conum" data-value="6"></i><b>(6)</b></code></pre>
+</div>
+</div>
+<div class="listingblock multi-language-sample">
+<div class="title">Kotlin</div>
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-kotlin" data-lang="kotlin">├── build.gradle.kts  <i class="conum" data-value="1"></i><b>(1)</b>
+├── gradle
+│   └── wrapper
+│       ├── gradle-wrapper.jar  <i class="conum" data-value="2"></i><b>(2)</b>
+│       └── gradle-wrapper.properties  <i class="conum" data-value="3"></i><b>(3)</b>
+├── gradlew  <i class="conum" data-value="4"></i><b>(4)</b>
+├── gradlew.bat  <i class="conum" data-value="5"></i><b>(5)</b>
+└── settings.gradle.kts  <i class="conum" data-value="6"></i><b>(6)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -272,7 +293,7 @@ BUILD SUCCESSFUL in 3s
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td><a href="https://docs.gradle.org/4.7/userguide/gradle_wrapper.html">Gradle Wrapper</a> executable JAR</td>
+<td><a href="https://docs.gradle.org/4.8/userguide/gradle_wrapper.html">Gradle Wrapper</a> executable JAR</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
@@ -299,7 +320,7 @@ BUILD SUCCESSFUL in 3s
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>gradle init</code> can generate <a href="https://docs.gradle.org/4.7/userguide/build_init_plugin.html#sec:build_init_types">various different types of projects</a>, and even knows how to translate simple <code>pom.xml</code> files to Gradle.
+<code>gradle init</code> can generate <a href="https://docs.gradle.org/4.8/userguide/build_init_plugin.html#sec:build_init_types">various different types of projects</a>, and even knows how to translate simple <code>pom.xml</code> files to Gradle.
 </td>
 </tr>
 </table>
@@ -313,10 +334,10 @@ BUILD SUCCESSFUL in 3s
 <h2 id="create_a_task"><a class="anchor" href="#create_a_task"></a><a class="link" href="#create_a_task">Create a task</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Gradle provides APIs for creating and configuring tasks through a Groovy or Kotlin-based DSL. A <a href="https://docs.gradle.org/4.7/dsl/org.gradle.api.Project.html"><code>Project</code></a> includes a collection of <a href="https://docs.gradle.org/4.7/dsl/org.gradle.api.Task.html"><code>Task</code></a>s, each of which performs some basic operation.</p>
+<p>Gradle provides APIs for creating and configuring tasks through a Groovy or Kotlin-based DSL. A <a href="https://docs.gradle.org/4.8/dsl/org.gradle.api.Project.html"><code>Project</code></a> includes a collection of <a href="https://docs.gradle.org/4.8/dsl/org.gradle.api.Task.html"><code>Task</code></a>s, each of which performs some basic operation.</p>
 </div>
 <div class="paragraph">
-<p>Gradle comes with a library of tasks that you can configure in your own projects. For example, there is a core type called <code>Copy</code>, which copies files from one location to another. The <code>Copy</code> task is very useful (<a href="https://docs.gradle.org/4.7/dsl/org.gradle.api.tasks.Copy.html">see the documentation</a> for details), but here, once again, let&#8217;s keep it simple. Perform the following steps:</p>
+<p>Gradle comes with a library of tasks that you can configure in your own projects. For example, there is a core type called <code>Copy</code>, which copies files from one location to another. The <code>Copy</code> task is very useful (<a href="https://docs.gradle.org/4.8/dsl/org.gradle.api.tasks.Copy.html">see the documentation</a> for details), but here, once again, let&#8217;s keep it simple. Perform the following steps:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -327,15 +348,28 @@ BUILD SUCCESSFUL in 3s
 <p>Add a file called <code>myfile.txt</code> in the <code>src</code> directory. The contents are arbitrary (it can even be empty), but for convenience add the single line <code>Hello, World!</code> to it.</p>
 </li>
 <li>
-<p>Define a task called <code>copy</code> of type <code>Copy</code> (note the capital letter) in the main build file, <code>build.gradle</code>, that copies the <code>src</code> directory to a new directory called <code>dest</code>. (You don&#8217;t have to create the <code>dest</code> directory&#8201;&#8212;&#8201;the task will do it for you.)</p>
+<p>Define a task called <code>copy</code> of type <code>Copy</code> (note the capital letter) in your build file that copies the <code>src</code> directory to a new directory called <code>dest</code>. (You don&#8217;t have to create the <code>dest</code> directory&#8201;&#8212;&#8201;the task will do it for you.)</p>
 </li>
 </ol>
 </div>
-<div class="listingblock">
+<div class="listingblock multi-language-sample">
+<div class="title">build.gradle</div>
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">task copy(type: Copy, group: "Custom", description: "Copies sources to the dest directory") {
     from "src"
     into "dest"
+}</code></pre>
+</div>
+</div>
+<div class="listingblock multi-language-sample">
+<div class="title">build.gradle.kts</div>
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-kotlin" data-lang="kotlin">tasks.create&lt;Copy&gt;("copy") {
+    description = "Copies sources to the dest directory"
+    group = "Custom"
+
+    from("src")
+    into("dest")
 }</code></pre>
 </div>
 </div>
@@ -348,7 +382,7 @@ BUILD SUCCESSFUL in 3s
 <div class="listingblock">
 <div class="content">
 <pre>❯ ./gradlew copy
-:copy
+&gt; Task :copy
 
 BUILD SUCCESSFUL in 0s
 1 actionable task: 1 executed</pre>
@@ -363,12 +397,13 @@ BUILD SUCCESSFUL in 0s
 <h2 id="apply_a_plugin"><a class="anchor" href="#apply_a_plugin"></a><a class="link" href="#apply_a_plugin">Apply a plugin</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Gradle includes a range of plugins, and many, many more are available at <a href="http://plugins.gradle.org">the Gradle plugin portal</a>. One of the plugins included with the distribution is the <code>base</code> plugin. Combined with a core type called <code><a href="https://docs.gradle.org/4.7/dsl/org.gradle.api.tasks.bundling.Zip.html">Zip</a></code>, you can create a zip archive of your project with a configured name and location.</p>
+<p>Gradle includes a range of plugins, and many, many more are available at <a href="http://plugins.gradle.org">the Gradle plugin portal</a>. One of the plugins included with the distribution is the <code>base</code> plugin. Combined with a core type called <code><a href="https://docs.gradle.org/4.8/dsl/org.gradle.api.tasks.bundling.Zip.html">Zip</a></code>, you can create a zip archive of your project with a configured name and location.</p>
 </div>
 <div class="paragraph">
-<p>Add the <code>base</code> plugin to your <code>build.gradle</code> file using the <code>plugins</code> syntax. Be sure to add the <code>plugins {}</code> block at the top of the file.</p>
+<p>Add the <code>base</code> plugin to your build script file using the <code>plugins</code> syntax. Be sure to add the <code>plugins {}</code> block at the top of the file.</p>
 </div>
-<div class="listingblock">
+<div class="listingblock multi-language-sample">
+<div class="title">build.gradle</div>
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">plugins {
     id "base"
@@ -377,13 +412,37 @@ BUILD SUCCESSFUL in 0s
 ... rest of the build file ...</code></pre>
 </div>
 </div>
+<div class="listingblock multi-language-sample">
+<div class="title">build.gradle.kts</div>
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-kotlin" data-lang="kotlin">plugins {
+    id("base")
+}
+
+... rest of the build file ...</code></pre>
+</div>
+</div>
 <div class="paragraph">
 <p>Now add a task that creates a zip archive from the <code>src</code> directory.</p>
 </div>
-<div class="listingblock">
+<div class="listingblock multi-language-sample">
+<div class="title">build.gradle</div>
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">task zip(type: Zip, group: "Archive", description: "Archives sources in a zip file") {
     from "src"
+    setArchiveName "basic-demo-1.0.zip"
+}</code></pre>
+</div>
+</div>
+<div class="listingblock multi-language-sample">
+<div class="title">build.gradle.kts</div>
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-kotlin" data-lang="kotlin">tasks.create&lt;Zip&gt;("zip") {
+    description = "Archives sources in a zip file"
+    group = "Archive"
+
+    from("src")
+    setArchiveName("basic-demo-1.0.zip")
 }</code></pre>
 </div>
 </div>
@@ -396,7 +455,7 @@ BUILD SUCCESSFUL in 0s
 <div class="listingblock">
 <div class="content">
 <pre>❯ ./gradlew zip
-:zip
+&gt; Task :zip
 
 BUILD SUCCESSFUL in 0s
 1 actionable task: 1 executed</pre>
@@ -408,7 +467,7 @@ BUILD SUCCESSFUL in 0s
 <h2 id="explore_and_debug_your_build"><a class="anchor" href="#explore_and_debug_your_build"></a><a class="link" href="#explore_and_debug_your_build">Explore and debug your build</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Let&#8217;s see what else we can do with Gradle in our new project. A full <a href="https://docs.gradle.org/4.7/userguide/command_line_interface.html">reference to the command-line interface</a> is available as well.</p>
+<p>Let&#8217;s see what else we can do with Gradle in our new project. A full <a href="https://docs.gradle.org/4.8/userguide/command_line_interface.html">reference to the command-line interface</a> is available as well.</p>
 </div>
 <div class="sect2">
 <h3 id="discover_available_code_tasks_code"><a class="anchor" href="#discover_available_code_tasks_code"></a><a class="link" href="#discover_available_code_tasks_code">Discover available <code>tasks</code></a></h3>
@@ -526,7 +585,7 @@ https://gradle.com/s/repnge6srr5qs</pre>
 <div class="paragraph">
 <p>The output is extensive. Here are just a few of the available properties:</p>
 </div>
-<div class="listingblock">
+<div class="listingblock multi-language-text lang-groovy">
 <div class="content">
 <pre>&gt; Task :properties
 
@@ -545,18 +604,37 @@ version: unspecified
 BUILD SUCCESSFUL</pre>
 </div>
 </div>
+<div class="listingblock multi-language-text lang-kotlin">
+<div class="content">
+<pre>&gt; Task :properties
+
+------------------------------------------------------------
+Root project
+------------------------------------------------------------
+
+buildDir: /Users/.../basic-demo/build
+buildFile: /Users/.../basic-demo/build.gradle.kts
+description: null
+group:
+name: basic-demo
+projectDir: /Users/.../basic-demo
+version: unspecified
+
+BUILD SUCCESSFUL</pre>
+</div>
+</div>
 <div class="paragraph">
 <p>The <code>name</code> of the project matches the name of the folder by default. You can also specify <code>group</code> and <code>version</code> properties, but at the moment they are taking their default values, as is <code>description</code>.</p>
 </div>
 <div class="paragraph">
-<p>The <code>buildFile</code> property is the fully-qualified path name to <code>build.gradle</code>, which resides in the <code>projectDir</code>&#8201;&#8212;&#8201;by default.</p>
+<p>The <code>buildFile</code> property is the fully-qualified path name to your build script, which resides in the <code>projectDir</code>&#8201;&#8212;&#8201;by default.</p>
 </div>
 <div class="paragraph">
-<p>You can change many of the properties. For example, you might try adding the following lines to your <code>build.gradle</code> file, and re-execute <code>gradle properties</code>.</p>
+<p>You can change many of the properties. For example, you might try adding the following lines to your build script file, and re-execute <code>gradle properties</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">description = "A trivial Gradle build"
+<pre class="prettyprint highlight"><code>description = "A trivial Gradle build"
 version = "1.0"</code></pre>
 </div>
 </div>
