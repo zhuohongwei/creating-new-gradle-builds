@@ -55,17 +55,15 @@ class ValidateSteps extends Specification {
         output.find(expectedOutput) //contains( new File(SRC_OUTPUT_DIR,validatorPath).text )
 
         where:
-        scriptName                 | task         | params    | validatorPath
-        'gradle-properties.gradle' | 'properties' | []        | 'description.txt'
-        'gradle-properties.gradle' | 'properties' | []        | 'version.txt'
-        'copy.gradle'              | 'tasks'      | ['--all'] | 'gradle-copy-tasks.txt'
-        'copy.gradle.kts'          | 'tasks'      | ['--all'] | 'gradle-copy-tasks.txt'
-        'copy.gradle'              | 'copy'       | []        | 'gradle-copy.txt'
-        'copy.gradle.kts'          | 'copy'       | []        | 'gradle-copy.txt'
-        'zip.gradle'               | 'tasks'      | ['--all'] | 'gradle-zip-tasks-1.txt'
-        'zip.gradle.kts'           | 'tasks'      | ['--all'] | 'gradle-zip-tasks-1.txt'
-        'zip.gradle'               | 'tasks'      | ['--all'] | 'gradle-zip-tasks-2.txt'
-        'zip.gradle.kts'           | 'tasks'      | ['--all'] | 'gradle-zip-tasks-2.txt'
+        scriptName                   | task         | params    | validatorPath
+        'copy.gradle'                | 'tasks'      | ['--all'] | 'gradle-copy-tasks.txt'
+        'copy.gradle.kts'            | 'tasks'      | ['--all'] | 'gradle-copy-tasks.txt'
+        'copy.gradle'                | 'copy'       | []        | 'gradle-copy.txt'
+        'copy.gradle.kts'            | 'copy'       | []        | 'gradle-copy.txt'
+        'with-base-plugin.gradle'    | 'tasks'      | ['--all'] | 'gradle-copy-with-base-tasks.txt'
+        'with-base-plugin.gradle.kts'| 'tasks'      | ['--all'] | 'gradle-copy-with-base-tasks.txt'
+        'with-base-plugin.gradle'    | 'tasks'      | ['--all'] | 'gradle-copy-with-base-tasks-2.txt'
+        'with-base-plugin.gradle.kts'| 'tasks'      | ['--all'] | 'gradle-copy-with-base-tasks-2.txt'
     }
 
     @Unroll
@@ -90,7 +88,5 @@ class ValidateSteps extends Specification {
         scriptName        | task   | validatorPath     | createdFilePath
         'copy.gradle'     | 'copy' | 'gradle-copy.txt' | 'dest/myfile.txt'
         'copy.gradle.kts' | 'copy' | 'gradle-copy.txt' | 'dest/myfile.txt'
-        'zip.gradle'      | 'zip'  | 'gradle-zip.txt'  | 'build/distributions/basic-demo-1.0.zip'
-        'zip.gradle.kts'  | 'zip'  | 'gradle-zip.txt'  | 'build/distributions/basic-demo-1.0.zip'
     }
 }

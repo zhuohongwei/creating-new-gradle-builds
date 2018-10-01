@@ -1,4 +1,7 @@
-task copy(type: Copy, group: "Custom", description: "Copies sources to the dest directory") {
-    from "src"
-    into "dest"
+task copySources(type: Copy) {
+    description = 'Copies sources to the dest directory'
+    group = 'Custom'
+
+    from 'src'
+    into 'dest'
 }

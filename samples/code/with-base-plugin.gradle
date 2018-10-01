@@ -1,0 +1,15 @@
+// tag::plugins[]
+plugins {
+    id 'base'
+}
+// end::plugins[]
+
+// tag::copytask[]
+task copySources(type: Copy) {
+    description = 'Copies sources to the dest directory'
+    group = 'Custom'
+
+    from 'src'
+    into "$buildDir/dest"  // <1>
+}
+// end::copytask[]
