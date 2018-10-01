@@ -109,7 +109,7 @@ One thing you may expect to work is `./gradlew clean` or something similar, but 
 
 == Apply the Base Plugin
 
-Gradle comes packaged with a range of core plugins, and you'll find many, many more on http://plugins.gradle.org[the Gradle Plugin Portal]. One of the core plugins — the {user-manual}base-plugin.html[Base Plugin] — provides a `clean` task as well as several other common lifecycle tasks like `assemble`, `check` and `build`.
+Gradle comes packaged with a range of core plugins, and you'll find many, many more on http://plugins.gradle.org[the Gradle Plugin Portal]. One of the core plugins — the {user-manual}base_plugin.html[Base Plugin] — provides a `clean` task as well as several other common lifecycle tasks like `assemble`, `check` and `build`.
 
 To apply the Base Plugin to your build, insert the following block at the top of your build script:
 
