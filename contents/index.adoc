@@ -9,7 +9,7 @@ Following this guide, you'll create a trivial Gradle project, invoke some of the
 * A Java Runtime Environment (JRE) or Java Development Kit (JDK), version 1.8 or later (only necessary to run Gradle)
 * A https://gradle.org/install[Gradle distribution], version {gradle-version} or better
 
-NOTE: Shell commands will be shown for Unix-based systems. The syntax for a Windows command prompt is similar, but you use `gradlew ...` in place of `./gradlew ...`.
+NOTE: Shell commands will be shown for Unix-based systems, but we will identify the changes needed for the Windows command prompt as and when necessary.
 
 == Initialize a project
 
@@ -94,7 +94,7 @@ You can now execute your new `copySources` task:
 
 [listing]
 ----
-❯ ./gradlew copySources
+❯ gradle copySources
 include::{samplesoutputdir}/gradle-copy.txt[]
 ----
 
@@ -102,8 +102,30 @@ Verify that it worked as expected by checking that there is now a file called `m
 
 [TIP]
 ====
-You can also run the task using the shorthand `./gradlew cS`. Read more about task name abbreviation in the {user-manual}command_line_interface.html#task_name_abbreviation[user manual].
+You can also run the task using the shorthand `gradle cS`. Read more about task name abbreviation in the {user-manual}command_line_interface.html#task_name_abbreviation[user manual].
 ====
+
+[[switch_to_wrapper]]
+== Switch to the Gradle Wrapper
+
+Using the Gradle Wrapper has several advantages, one of which is that you don't have to remember which version of Gradle the build was written for. You can learn more about it in the {user-manual}gradle_wrapper.html[user manual].
+
+When you use the wrapper for the first time for a given version of Gradle (regardless of the project), you will download a Gradle distribution of that version. This will happen even if you have that version of Gradle already installed. So expect a short (depending on your internet bandwidth) wait during the next step.
+
+Try running the `copySources` task with the Gradle Wrapper:
+
+[listing]
+----
+❯ ./gradlew copySources
+include::{samplesoutputdir}/gradle-copy.txt[]
+----
+
+[NOTE]
+.On Windows
+====
+Use `gradlew` in place of `./gradlew` on Windows.
+====
+
 
 One thing you may expect to work is `./gradlew clean` or something similar, but if you try that, Gradle will tell you it can't find the task 'clean'. That's because the core of Gradle assumes almost nothing about your build. Instead, you can make use of _plugins_ to provide common and useful functionality, like a `clean` task. You'll do that next.
 
